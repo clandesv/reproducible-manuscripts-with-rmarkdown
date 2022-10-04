@@ -1,0 +1,98 @@
+---
+title: "Reproducible Papers in Rmd and Pagedown"
+subtitle: "Subtitle"
+author:  
+  <table class="authors">
+    <tbody>
+      <tr>
+        <td>Camille Landesvatter</td>
+        <td>Dr. Paul C. Bauer</td>
+      </tr>
+      <tr>
+        <td>.font75[Mannheim Centre for European Research (MZES), University of Mannheim]</td>
+        <td>.font75[Mannheim Centre for European Research (MZES), University of Mannheim]</td>
+      </tr>
+    </tbody>
+  </table>
+  <table class="contact">
+    <tbody>
+      <tr>
+        <td>`r icons::fontawesome("envelope", style = "solid")` [`camille.landesvatter@mzes.uni-mannheim.de`](mailto:camille.landesvatter@mzes.uni-mannheim.de)</td>
+        <td>`r icons::fontawesome("envelope", style = "solid")` [`mail@paulcbauer.de`](mailto:mail@paulcbauer.de)</td>
+      </tr>
+      <tr>
+        <td>`r icons::fontawesome("globe", style = "solid")`  [`MZES Website`](https://www.mzes.uni-mannheim.de/d7/de/profiles/camille-marie-landesvatter)</td>
+        <td>`r icons::fontawesome("globe", style = "solid")`  [`MZES Website`](https://www.mzes.uni-mannheim.de/d7/de/profiles/paul-c-bauer)</td>
+      </tr>
+      <tr>
+        <td>`r icons::academicons("google-scholar")` [`Camille Landesvatter`](https://scholar.google.de/citations?user=S-lC2DgAAAAJ&hl=de)</td>
+        <td>`r icons::academicons("google-scholar")` [`Paul C. Bauer`](https://scholar.google.com/citations?hl=en&user=hw-b-MkAAAAJ)</td>
+      </tr>
+    </tbody>
+  </table>
+  
+date: 
+  Mannheim Open Science Day Reprohack <br /> `r format(Sys.Date(), format="%B %d, %Y")`
+  
+output: 
+  xaringan::moon_reader:
+    includes:
+      after_body: insert-logo.html
+    css:
+      - default
+      - jobtalk_ks_mtheme.css
+      - jobtalk_ks_fonts_mtheme.css
+    nature: 
+      beforeInit: "macros.js"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+      ratio: '16:9'
+      slideNumberFormat: "Slide %current% of %total%"
+    class: inverse, mline, center,   middle
+---
+
+```{r setup, include=FALSE}
+## Save package names as a vector of strings
+pkgs <-
+  c("rmarkdown",
+    "knitr",
+    "dplyr",
+    "devtools",
+    "widgetframe",
+    "RefManageR",
+    "bibtex",
+    "plotly")
+
+## Install uninstalled packages
+lapply(pkgs[!(pkgs %in% installed.packages())], install.packages)
+
+## Load all packages to library and adjust options
+lapply(pkgs, library, character.only = TRUE)
+
+## Devtools install
+if (!("icons" %in% installed.packages()))
+  devtools::install_github("ropenscilabs/icons")
+library(icons)
+
+## Global chunk options
+knitr::opts_chunk$set(echo = FALSE,
+                      warning = FALSE,
+                      message = FALSE)
+options(scipen=999)
+options(htmltools.dir.version = FALSE)
+
+## RefManageR options
+BibOptions(
+  bib.style = "authoryear",
+  hyperlink = "to.bib",
+  style = "markdown",
+  max.names = 3L
+)
+```
+
+```{r}
+#slide
+```
+
+
