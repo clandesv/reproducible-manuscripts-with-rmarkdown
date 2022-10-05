@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Reproducible Papers in Rmd and Pagedown</title>
+    <title>Writing reproducible manuscripts in R Markdown and Pagedown</title>
     <meta charset="utf-8" />
     <script src="mzes-xaringan-metropolis_files/header-attrs/header-attrs.js"></script>
     <link href="mzes-xaringan-metropolis_files/remark-css/default.css" rel="stylesheet" />
@@ -13,10 +13,7 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# Reproducible Papers in Rmd and Pagedown
-]
-.subtitle[
-## Subtitle
+# Writing reproducible manuscripts in R Markdown and Pagedown
 ]
 .author[
 ### <table class="authors">
@@ -46,7 +43,7 @@ Dr. Paul C. Bauer
 <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
 <path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
 </svg>
-<a href="mailto:camille.landesvatter@mzes.uni-mannheim.de"><code>camille.landesvatter@mzes.uni-mannheim.de</code></a>
+<a href="mailto:camille.landesvatter@uni-mannheim.de"><code>camille.landesvatter@uni-mannheim.de</code></a>
 </td>
 <td>
 <svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
@@ -87,7 +84,7 @@ Dr. Paul C. Bauer
 </table>
 ]
 .date[
-### Mannheim Open Science Day Reprohack <br /> Oktober 04, 2022
+### Mannheim Open Science Day Reprohack <br /> Oktober 11, 2022
 ]
 
 ---
@@ -95,6 +92,118 @@ Dr. Paul C. Bauer
 
 
 
+
+
+# Why reproducible research?
+
+* **Reproducability**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency. 
+* **Access**: Open access is given since research is freely available to everyone without any barriers, e.g., without requiring commercial software. E.g., 
+&lt;img src="mzes-xaringan-metropolis_files/figure-html/unnamed-chunk-1-1.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+* **Errors**: Everyone (including yourself) can spot errors. Plus, automation (e.g. no manual copy/paste steps) decreases chance of making errors.
+
+* **Revisions**: Revision of manuscripts and other pieces of research gets easier when steps are reproducible and automated.
+
+
+
+---
+# Tools for reproducible manuscripts in R
+
+.pull-left[
+* **R Markdown**
+  * combine R code and markdown-formatted text to produce HTML, PDF or Word documents
+
+* **Pagedown**
+  * R Markdown based
+  * creates paginated HTML reports (`paged.js`) and prints to PDF
+  * highly customizable due to HTML and CSS styling sheets which you specify in your YAML
+  * many templates (e.g., CV, thesis, letter, journal templates)
+
+]
+
+.pull-right[
+* Other (R Markdown based): posterdown, bookdown, xaringan, etc.
+
+&lt;img src="R-libraries.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
+]
+---
+# Two templates (on OSF and Github)
+
+.pull-left[
+
+Bauer, P. 2021: 
+&lt;img src="osf-2.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+Bauer, P.; Landesvatter, C. 2022:
+&lt;img src="osf-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+How can you use these templates?
+  * clone github repositories that contain all files and code: 
+    * 'paper.rmd'
+    * 'references.bib'
+    * 'data.csv'
+    * 'american-sociological-association.csl'
+    * styling files: 'wp_paged.html', 'wp.css', 'wp-fonts.css', 'wp-pages.css'
+]
+
+---
+# Pre-Requisites for RMD and Pagedown
+
+Both require: installation of R and Rstudio
+
+Further requirements: 
+
+* R Markdown: 
+  * rmarkdown package
+  * a latex distribution, e.g. tinytex (a lightweight version of Tex Live) 
+
+
+
+* Pagedown:
+  * rmarkdown package
+  * pagedown package
+  
+
+
+---
+
+# 3 Examples
+
+1. Inline code &amp; results
+2. Figures
+3. Tables
+
+---
+# 1. Inline code &amp; results
+
+
+---
+# 2. Figures
+
+
+
+---
+# 3. Tables
+
+Regression Table with tab_options in pagedown
+
+
+
+---
+# Pagedowns' Infinite Moon Reader
+
+
+
+---
+# Thank you!
+
+
+paulcbauer/Writing_a_reproducable_paper_in_pagedown
+Public
+
+paulcbauer/Writing_a_reproducable_paper_in_rmarkdown
 
 
 

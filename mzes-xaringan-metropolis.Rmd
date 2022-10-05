@@ -1,6 +1,5 @@
 ---
-title: "Reproducible Papers in Rmd and Pagedown"
-subtitle: "Subtitle"
+title: " Writing reproducible manuscripts in R Markdown and Pagedown"
 author:  
   <table class="authors">
     <tbody>
@@ -17,7 +16,7 @@ author:
   <table class="contact">
     <tbody>
       <tr>
-        <td>`r icons::fontawesome("envelope", style = "solid")` [`camille.landesvatter@mzes.uni-mannheim.de`](mailto:camille.landesvatter@mzes.uni-mannheim.de)</td>
+        <td>`r icons::fontawesome("envelope", style = "solid")` [`camille.landesvatter@uni-mannheim.de`](mailto:camille.landesvatter@uni-mannheim.de)</td>
         <td>`r icons::fontawesome("envelope", style = "solid")` [`mail@paulcbauer.de`](mailto:mail@paulcbauer.de)</td>
       </tr>
       <tr>
@@ -32,7 +31,7 @@ author:
   </table>
   
 date: 
-  Mannheim Open Science Day Reprohack <br /> `r format(Sys.Date(), format="%B %d, %Y")`
+  Mannheim Open Science Day Reprohack <br /> Oktober 11, 2022
   
 output: 
   xaringan::moon_reader:
@@ -91,8 +90,134 @@ BibOptions(
 )
 ```
 
-```{r}
-#slide
+https://rladies.github.io/meetup-presentations_oslo/2020-05-11-rmarkdown_like_a_boss/presentation.html#41
+
+# Why reproducible research?
+
+* **Reproducability**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency. 
+* **Access**: Open access is given since research is freely available to everyone without any barriers, e.g., without requiring commercial software. E.g., 
+```{r, out.width = "30%", fig.align='center', echo=F}
+magick <- magick::image_read_pdf("workflow_access.pdf",
+                       pages=1)
+magick <- magick::image_trim(magick)
+magick
 ```
+
+* **Errors**: Everyone (including yourself) can spot errors. Plus, automation (e.g. no manual copy/paste steps) decreases chance of making errors.
+
+* **Revisions**: Revision of manuscripts and other pieces of research gets easier when steps are reproducible and automated.
+
+
+
+---
+# Tools for reproducible manuscripts in R
+
+.pull-left[
+* **R Markdown**
+  * combine R code and markdown-formatted text to produce HTML, PDF or Word documents
+
+* **Pagedown**
+  * R Markdown based
+  * creates paginated HTML reports (`paged.js`) and prints to PDF
+  * highly customizable due to HTML and CSS styling sheets which you specify in your YAML
+  * many templates (e.g., CV, thesis, letter, journal templates)
+
+]
+
+.pull-right[
+* Other (R Markdown based): posterdown, bookdown, xaringan, etc.
+
+```{r, out.width = "50%", fig.align='center', echo=F}
+knitr::include_graphics("R-libraries.jpeg")
+```
+]
+---
+# Two templates (on OSF and Github)
+
+.pull-left[
+
+Bauer, P. 2021: 
+```{r, out.width = "100%", fig.align='center', echo=F}
+knitr::include_graphics("osf-2.png")
+```
+
+Bauer, P.; Landesvatter, C. 2022:
+```{r, out.width = "100%", fig.align='center', echo=F}
+knitr::include_graphics("osf-1.png")
+```
+]
+
+.pull-right[
+How can you use these templates?
+  * clone github repositories that contain all files and code: 
+    * 'paper.rmd'
+    * 'references.bib'
+    * 'data.csv'
+    * 'american-sociological-association.csl'
+    * styling files: 'wp_paged.html', 'wp.css', 'wp-fonts.css', 'wp-pages.css'
+]
+
+---
+# Pre-Requisites for RMD and Pagedown
+
+Both require: installation of R and Rstudio
+
+Further requirements: 
+
+* R Markdown: 
+  * rmarkdown package
+  * a latex distribution, e.g. tinytex (a lightweight version of Tex Live) 
+
+```{r eval=FALSE, include=TRUE}
+install.packages(c('tinytex', 'rmarkdown'))
+tinytex::install_tinytex()
+```
+
+* Pagedown:
+  * rmarkdown package
+  * pagedown package
+  
+```{r eval=FALSE, include=TRUE}
+remotes::install_github('rstudio/pagedown')
+```
+
+---
+
+# 3 Examples
+
+1. Inline code & results
+2. Figures
+3. Tables
+
+---
+# 1. Inline code & results
+
+
+---
+# 2. Figures
+
+
+
+---
+# 3. Tables
+
+Regression Table with tab_options in pagedown
+
+
+
+---
+# Pagedowns' Infinite Moon Reader
+
+
+
+---
+# Thank you!
+
+
+paulcbauer/Writing_a_reproducable_paper_in_pagedown
+Public
+
+paulcbauer/Writing_a_reproducable_paper_in_rmarkdown
+
 
 
