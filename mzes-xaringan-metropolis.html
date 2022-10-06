@@ -93,16 +93,17 @@ Dr. Paul C. Bauer
 
 
 
-
 # Why reproducible research?
 
-* **Reproducability**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency. 
-* **Access**: Open access is given since research is freely available to everyone without any barriers, e.g., without requiring commercial software. E.g., 
+* **Reproducability**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency (and credibility).
+
+* **Access**: Open access is given when research is freely available to everyone without any barriers, e.g., without requiring commercial software. E.g., 
 &lt;img src="mzes-xaringan-metropolis_files/figure-html/unnamed-chunk-1-1.png" width="30%" style="display: block; margin: auto;" /&gt;
 
-* **Errors**: Everyone (including yourself) can spot errors. Plus, automation (e.g. no manual copy/paste steps) decreases chance of making errors.
+* **Errors**: Everyone (including yourself) can spot errors. Plus, automation (e.g., code that produces findings is tied to the document itself) avoids a slow and error-prone cut-and-paste approach.
 
-* **Revisions**: Revision of manuscripts and other pieces of research gets easier when steps are reproducible and automated.
+* **Revisions**: Revision of manuscripts and other pieces of research gets easier when steps are reproducible and automated. Plus, easy version control with git, etc.
+
 
 
 
@@ -110,14 +111,14 @@ Dr. Paul C. Bauer
 # Tools for reproducible manuscripts in R
 
 .pull-left[
-* **R Markdown**
+* **rmarkdown**
   * combine R code and markdown-formatted text to produce HTML, PDF or Word documents
-
-* **Pagedown**
+* **pagedown** *(Xie et al. 2022)*
   * R Markdown based
-  * creates paginated HTML reports (`paged.js`) and prints to PDF
-  * highly customizable due to HTML and CSS styling sheets which you specify in your YAML
-  * many templates (e.g., CV, thesis, letter, journal templates)
+  * creates paginated HTML reports and prints to PDF
+  * this includes headers, footers, etc.
+  * highly customizable due to HTML and CSS styling sheets (YAML Metadata)
+  * many available templates, e.g. CV, thesis, letter, journal templates
 
 ]
 
@@ -134,76 +135,745 @@ Dr. Paul C. Bauer
 Bauer, P. 2021: 
 &lt;img src="osf-2.png" width="100%" style="display: block; margin: auto;" /&gt;
 
+
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: /paulcbauer/Writing_a_reproducable_paper_in_rmarkdown
+
 Bauer, P.; Landesvatter, C. 2022:
 &lt;img src="osf-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: /paulcbauer/Writing_a_reproducable_paper_in_pagedown
+
 ]
 
 .pull-right[
 How can you use these templates?
-  * clone github repositories that contain all files and code: 
+  * clone github repositories including: 
     * 'paper.rmd'
     * 'references.bib'
     * 'data.csv'
     * 'american-sociological-association.csl'
-    * styling files: 'wp_paged.html', 'wp.css', 'wp-fonts.css', 'wp-pages.css'
+    * styling files for pagedown: 'wp_paged.html', 'wp.css', 'wp-fonts.css', 'wp-pages.css'
+  * open .Rproj
+  * start creating your first manuscript in our working paper (wp) style or modify the styling sheets
 ]
 
 ---
-# Pre-Requisites for RMD and Pagedown
+# Pre-Requisites for R Markdown and Pagedown
 
-Both require: installation of R and Rstudio
-
-Further requirements: 
+Both require: installation of R + recommended: Rstudio IDE 
 
 * R Markdown: 
   * rmarkdown package
-  * a latex distribution, e.g. tinytex (a lightweight version of Tex Live) 
+  * other dependencies, e.g. knitr package
+  * if you work without Rstudio: Pandoc Installation
+  * if you want PDF output: a latex distribution, e.g. tinytex (a lightweight, cross-platform LaTeX distribution) 
 
 
+```r
+install.packages(c('tinytex', 'rmarkdown'))
+tinytex::install_tinytex()
+```
 
 * Pagedown:
-  * rmarkdown package
-  * pagedown package
+  * all above + pagedown package
   
 
+```r
+remotes::install_github('rstudio/pagedown')
+```
 
 ---
+class: center, middle
 
-# 3 Examples
-
-1. Inline code &amp; results
-2. Figures
-3. Tables
+# Three Examples
+## 1. Inline code &amp; results 
+## 2. Figures
+## 3. Tables
 
 ---
 # 1. Inline code &amp; results
 
+&lt;u&gt;Example 1:&lt;/u&gt;
+
+Writing 'r 3 + 7' (use back ticks!) will calculate and insert 10 into your text.   
+
+&lt;u&gt;Example 2:&lt;/u&gt;
+
+Imagine you want to automate the display of regression coefficients within your manuscript.
+
+
+```r
+data &lt;- read.csv("data.csv")
+```
+
+
+```r
+M1 &lt;- lm(Fertility ~ Education + Agriculture, data = data)
+```
+
+Now we can write some plain text with inline code:
+The coefficient of `Education` of the model we ran above is -0.96.
+-0.96 was printed by writing: 'r round(coef(M1)[2], 2)' (use back ticks!).
+
+*What advantages does such a workflow bring?*
+---
+# 2. Figures
+
+Example: You want to create, edit and insert a ggplot2 graph alongside its code and the text.
+
+
+```r
+data$Education_cat &lt;- cut(data$Education, 
+                   breaks=c(-Inf, 6, 12, Inf), labels=c("low","middle","high"))
+```
+
+
+
+```r
+ggplot(data, aes(x=Catholic, y=Fertility, shape=Education_cat)) + geom_point() +
+  labs(x="Agriculture", y = "Fertility", shape="Education") + theme_classic()
+```
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="mzes-xaringan-metropolis_files/figure-html/fig-1-1.png" alt="Fig 1. Fertility and Agriculture by Education"  /&gt;
+&lt;p class="caption"&gt;Fig 1. Fertility and Agriculture by Education&lt;/p&gt;
+&lt;/div&gt;
 
 ---
 # 2. Figures
+
+* For cross-referencing within your manuscript you can refer to Figure 1 by using `\@ref(fig:fig-1)`.
+
+* But pay attention to your code chunk options. In the previous example:
+
+&lt;blockquote&gt; &lt;font size="6"&gt;{r fig-1, fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center", fig.width=6, fig.height=3, eval=T, echo=T} &lt;/font size&gt;&lt;/blockquote&gt; 
+
+*What do the different code chunk options mean?*
+
+
+
 
 
 
 ---
 # 3. Tables
 
-Regression Table with tab_options in pagedown
+Example 1: You want to show summary statistics of your data.
+
+.pull-left[
+
+```r
+library(stargazer)
+stargazer(data, 
+          title = "Summary table with stargazer",
+          label="tab1", 
+          header=FALSE,
+          table.placement = "H", 
+          type="html",
+          font.size = "small")
+```
+]
+
+.pull-right[
+
+&lt;table style="text-align:center"&gt;&lt;caption&gt;&lt;strong&gt;Summary table with stargazer&lt;/strong&gt;&lt;/caption&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Fertility&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;70.143&lt;/td&gt;&lt;td&gt;12.492&lt;/td&gt;&lt;td&gt;35.000&lt;/td&gt;&lt;td&gt;92.500&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Agriculture&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;50.660&lt;/td&gt;&lt;td&gt;22.711&lt;/td&gt;&lt;td&gt;1.200&lt;/td&gt;&lt;td&gt;89.700&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Examination&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;16.489&lt;/td&gt;&lt;td&gt;7.978&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;37&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Education&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;10.979&lt;/td&gt;&lt;td&gt;9.615&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;53&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Catholic&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;41.144&lt;/td&gt;&lt;td&gt;41.705&lt;/td&gt;&lt;td&gt;2.150&lt;/td&gt;&lt;td&gt;100.000&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Infant.Mortality&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;19.943&lt;/td&gt;&lt;td&gt;2.913&lt;/td&gt;&lt;td&gt;10.800&lt;/td&gt;&lt;td&gt;26.600&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+] 
+ 
+ 
+---
+# 3. Tables
+
+Example 1b: You want to show summary statistics of a subset of your data.
+
+.pull-left[
+
+```r
+library(stargazer)
+stargazer(data %&gt;% filter(Education&gt;=15),
+          title = "Summary table with stargazer",
+          label="tab1", 
+          header=FALSE,
+          table.placement = "H", 
+          type="html",
+          font.size = "small")
+```
+]
+
+.pull-right[
+
+&lt;table style="text-align:center"&gt;&lt;caption&gt;&lt;strong&gt;Summary table with stargazer&lt;/strong&gt;&lt;/caption&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Fertility&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;54.013&lt;/td&gt;&lt;td&gt;13.239&lt;/td&gt;&lt;td&gt;35.000&lt;/td&gt;&lt;td&gt;76.900&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Agriculture&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;24.750&lt;/td&gt;&lt;td&gt;14.964&lt;/td&gt;&lt;td&gt;1.200&lt;/td&gt;&lt;td&gt;46.600&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Examination&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;26.125&lt;/td&gt;&lt;td&gt;7.791&lt;/td&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;37&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Education&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;28.125&lt;/td&gt;&lt;td&gt;11.692&lt;/td&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;53&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Catholic&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;25.738&lt;/td&gt;&lt;td&gt;21.527&lt;/td&gt;&lt;td&gt;2.150&lt;/td&gt;&lt;td&gt;58.330&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td style="text-align:left"&gt;Infant.Mortality&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;18.875&lt;/td&gt;&lt;td&gt;3.634&lt;/td&gt;&lt;td&gt;10.800&lt;/td&gt;&lt;td&gt;23.000&lt;/td&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+] 
+
+---
+# 3. Tables
+
+&lt;font size="4"&gt;
+
+.pull-left[
+
+```r
+M1 &lt;- lm(Fertility ~ Education + Agriculture, data = data)
+M2 &lt;- lm(Fertility ~ Education + Catholic, data = data)
+models &lt;- list("M1" = M1, "M2" =  M2)
+
+library(gt)
+library(modelsummary)
+
+modelsummary(M1,
+             title = 'Linear regression',
+             output = 'gt',
+             notes = "Notes: some notes...") %&gt;%
+  tab_spanner(label = 'Dependent variable: Fertility', columns = 1:2) %&gt;%
+  tab_options(
+    table.font.size = 10, data_row.padding = px(1), table.border.top.color = "white",
+    heading.border.bottom.color = "black",
+    row_group.border.top.color = "black", row_group.border.bottom.color = "white",
+    table.border.bottom.color = "white",
+    column_labels.border.top.color = "black", column_labels.border.bottom.color = "black",
+    table_body.border.bottom.color = "black", table_body.hlines.color = "white"
+  )
+```
+]
+
+
+.pull-right[
+<div id="zcszhobcrx" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#zcszhobcrx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #FFFFFF;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#zcszhobcrx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zcszhobcrx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#zcszhobcrx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#zcszhobcrx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+}
+
+#zcszhobcrx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#zcszhobcrx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#zcszhobcrx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#zcszhobcrx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#zcszhobcrx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#zcszhobcrx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#zcszhobcrx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#zcszhobcrx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #000000;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #FFFFFF;
+  vertical-align: middle;
+}
+
+#zcszhobcrx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#zcszhobcrx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#zcszhobcrx .gt_row {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#zcszhobcrx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zcszhobcrx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#zcszhobcrx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#zcszhobcrx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zcszhobcrx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#zcszhobcrx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#zcszhobcrx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#zcszhobcrx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zcszhobcrx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#zcszhobcrx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#zcszhobcrx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #000000;
+}
+
+#zcszhobcrx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zcszhobcrx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zcszhobcrx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#zcszhobcrx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#zcszhobcrx .gt_left {
+  text-align: left;
+}
+
+#zcszhobcrx .gt_center {
+  text-align: center;
+}
+
+#zcszhobcrx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#zcszhobcrx .gt_font_normal {
+  font-weight: normal;
+}
+
+#zcszhobcrx .gt_font_bold {
+  font-weight: bold;
+}
+
+#zcszhobcrx .gt_font_italic {
+  font-style: italic;
+}
+
+#zcszhobcrx .gt_super {
+  font-size: 65%;
+}
+
+#zcszhobcrx .gt_two_val_uncert {
+  display: inline-block;
+  line-height: 1em;
+  text-align: right;
+  font-size: 60%;
+  vertical-align: -0.25em;
+  margin-left: 0.1em;
+}
+
+#zcszhobcrx .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#zcszhobcrx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#zcszhobcrx .gt_slash_mark {
+  font-size: 0.7em;
+  line-height: 0.7em;
+  vertical-align: 0.15em;
+}
+
+#zcszhobcrx .gt_fraction_numerator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: 0.45em;
+}
+
+#zcszhobcrx .gt_fraction_denominator {
+  font-size: 0.6em;
+  line-height: 0.6em;
+  vertical-align: -0.05em;
+}
+</style>
+<table class="gt_table">
+  &lt;caption&gt;Table 1. Linear regression&lt;/caption&gt;
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1"> </th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2">
+        <span class="gt_column_spanner">Dependent variable: Fertility</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">M1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">M2</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">(Intercept)</td>
+<td class="gt_row gt_center">84.080</td>
+<td class="gt_row gt_center">74.234</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_center">(5.782)</td>
+<td class="gt_row gt_center">(2.352)</td></tr>
+    <tr><td class="gt_row gt_left">Education</td>
+<td class="gt_row gt_center">-0.963</td>
+<td class="gt_row gt_center">-0.788</td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_center">(0.189)</td>
+<td class="gt_row gt_center">(0.129)</td></tr>
+    <tr><td class="gt_row gt_left">Agriculture</td>
+<td class="gt_row gt_center">-0.066</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left"></td>
+<td class="gt_row gt_center">(0.080)</td>
+<td class="gt_row gt_center"></td></tr>
+    <tr><td class="gt_row gt_left">Catholic</td>
+<td class="gt_row gt_center"></td>
+<td class="gt_row gt_center">0.111</td></tr>
+    <tr><td class="gt_row gt_left" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
+<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(0.030)</td></tr>
+    <tr><td class="gt_row gt_left">Num.Obs.</td>
+<td class="gt_row gt_center">47</td>
+<td class="gt_row gt_center">47</td></tr>
+    <tr><td class="gt_row gt_left">R2</td>
+<td class="gt_row gt_center">0.449</td>
+<td class="gt_row gt_center">0.575</td></tr>
+    <tr><td class="gt_row gt_left">R2 Adj.</td>
+<td class="gt_row gt_center">0.424</td>
+<td class="gt_row gt_center">0.555</td></tr>
+    <tr><td class="gt_row gt_left">AIC</td>
+<td class="gt_row gt_center">349.7</td>
+<td class="gt_row gt_center">337.6</td></tr>
+    <tr><td class="gt_row gt_left">BIC</td>
+<td class="gt_row gt_center">357.1</td>
+<td class="gt_row gt_center">345.0</td></tr>
+    <tr><td class="gt_row gt_left">RMSE</td>
+<td class="gt_row gt_center">9.17</td>
+<td class="gt_row gt_center">8.06</td></tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="3">Notes: some notes...</td>
+    </tr>
+  </tfoot>
+  
+</table>
+</div>
+
+]
+
+
+* For cross-referencing within your manuscript you can refer to Table 1 by using Table `\@ref(tab:table-1)` (include table-1 into the chunk option!).
+
+&lt;/font size&gt;
+---
+# Xaringans' Infinite Moon Reader
+
+* xaringan package (Xie 2021) includes R Studio add-in Infinite Moon Reader
+
+* preview live changes while editing your files or even manuscript
+
+* avoids manually knitting your document each time
+
+
+```r
+xaringan::inf_mr()
+```
+
+* launches a local web server via the servr package (Xie 2021) and displays your pages in the RStudio viewer
+
+* each time you save your document (Ctrl/Cmd+S) xaringan updates your pages in the viewer.
+
 
 
 
 ---
-# Pagedowns' Infinite Moon Reader
+# Xaringans' Infinite Moon Reader
+
+&lt;img src="xaringan-inf-moonreader.png" width="100%" style="display: block; margin: auto;" /&gt;
+
 
 
 
 ---
+class: center, middle
+
 # Thank you!
 
-
-paulcbauer/Writing_a_reproducable_paper_in_pagedown
-Public
-
-paulcbauer/Writing_a_reproducable_paper_in_rmarkdown
+Xaringan Presentation on GitHub Pages: link to github page with presentation slides
 
 
 
