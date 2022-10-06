@@ -132,6 +132,9 @@ magick
 ```{r, out.width = "50%", fig.align='center', echo=F}
 knitr::include_graphics("R-libraries.jpeg")
 ```
+
+<font size="2">Source: Indrajeet Patil on Twitter</font size>
+
 ]
 ---
 # Two templates (on OSF and Github)
