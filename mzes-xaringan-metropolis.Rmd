@@ -417,7 +417,10 @@ class: center, middle
 
 # Thank you!
 
-Xaringan Presentation on GitHub Pages: link to github page with presentation slides
+
+`r icons::fontawesome("github")`: clandesv/reproducible-manuscripts-with-RMD
+
+Xaringan Presentation on GitHub Pages: https://clandesv.github.io/reproducible-manuscripts-with-RMD/mzes-xaringan-metropolis.html
 
 
 
