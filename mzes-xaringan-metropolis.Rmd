@@ -230,15 +230,33 @@ The coefficient of `Education` of the model we ran above is `r round(coef(M1)[2]
 
 Example: You want to create, edit and insert a ggplot2 graph alongside its code and the text.
 
+<font size="4">
+
 ```{r eval=T, echo=T}
 data$Education_cat <- cut(data$Education, 
                    breaks=c(-Inf, 6, 12, Inf), labels=c("low","middle","high"))
 ```
 
-```{r fig-1, fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center", fig.width=6, fig.height=3, eval=T, echo=T}
+````
+`r ''````{r fig-1, fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center",
+fig.width=6, fig.height=3, eval=T, echo=T}
 ggplot(data, aes(x=Catholic, y=Fertility, shape=Education_cat)) + geom_point() +
   labs(x="Agriculture", y = "Fertility", shape="Education") + theme_classic()
 ```
+````
+</font size>
+
+<style>
+p.caption {
+  font-size: 0.6em;
+}
+</style>
+
+```{r fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center", fig.width=5, fig.height=3, eval=T, echo=F}
+ggplot(data, aes(x=Catholic, y=Fertility, shape=Education_cat)) + geom_point() +
+  labs(x="Agriculture", y = "Fertility", shape="Education") + theme_classic()
+```
+
 
 ---
 # 2. Figures
@@ -322,10 +340,11 @@ stargazer(data %>% filter(Education>=15),
 ---
 # 3. Tables
 
-<font size="4">
+<font size="3">
 
 .pull-left[
-```{r eval=F, echo=T}
+````
+`r ''````{r table-1, eval=T, echo=T, results='hide'}
 M1 <- lm(Fertility ~ Education + Agriculture, data = data)
 M2 <- lm(Fertility ~ Education + Catholic, data = data)
 models <- list("M1" = M1, "M2" =  M2)
@@ -333,24 +352,31 @@ models <- list("M1" = M1, "M2" =  M2)
 library(gt)
 library(modelsummary)
 
-modelsummary(M1,
-             title = 'Linear regression',
+modelsummary(models,
+             title = 'Table 1. Linear regression',
              output = 'gt',
              notes = "Notes: some notes...") %>%
-  tab_spanner(label = 'Dependent variable: Fertility', columns = 1:2) %>%
+  tab_spanner(label = 'Dependent variable: Fertility', columns = 2:3) %>%
   tab_options(
-    table.font.size = 10, data_row.padding = px(1), table.border.top.color = "white",
-    heading.border.bottom.color = "black",
-    row_group.border.top.color = "black", row_group.border.bottom.color = "white",
-    table.border.bottom.color = "white",
+    table.font.size = 16, data_row.padding = px(1),
+    table.border.top.color = "white", heading.border.bottom.color = "black",
+    row_group.border.top.color = "black",
+    row_group.border.bottom.color = "white", table.border.bottom.color = "white",
     column_labels.border.top.color = "black", column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black", table_body.hlines.color = "white"
+    table_body.hlines.color = "white"
   )
-
-
 ```
+````
+
+<font size="4">
+
+* For cross-referencing within your manuscript you can refer to Table 1 by using `\@ref(tab:table-1)` (include table-1 into the chunk option!).
+
+</font size>
 ]
 
+
+</font size>
 
 .pull-right[
 ```{r table-1, eval=T, echo=F}
@@ -371,8 +397,7 @@ modelsummary(models,
     heading.border.bottom.color = "black",
     row_group.border.top.color = "black", row_group.border.bottom.color = "white",
     table.border.bottom.color = "white",
-    column_labels.border.top.color = "black", column_labels.border.bottom.color = "black",
-    table_body.border.bottom.color = "black", table_body.hlines.color = "white"
+    column_labels.border.top.color = "black", column_labels.border.bottom.color = "black", table_body.hlines.color = "white"
   )
 
 
@@ -381,9 +406,7 @@ modelsummary(models,
 ]
 
 
-* For cross-referencing within your manuscript you can refer to Table 1 by using Table `\@ref(tab:table-1)` (include table-1 into the chunk option!).
 
-</font size>
 ---
 # Xaringans' Infinite Moon Reader
 
