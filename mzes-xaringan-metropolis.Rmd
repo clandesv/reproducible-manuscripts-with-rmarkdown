@@ -206,7 +206,7 @@ class: center, middle
 
 <u>Example 1:</u>
 
-Writing 'r 3 + 7' (use back ticks!) will calculate and insert `r 3 + 7` into your text.   
+Writing <code>&grave;r `3 + 7`&grave;</code> (use back ticks!) will calculate and insert `r 3 + 7` into your text.   
 
 <u>Example 2:</u>
 
@@ -222,7 +222,7 @@ M1 <- lm(Fertility ~ Education + Agriculture, data = data)
 
 Now we can write some plain text with inline code:
 The coefficient of `Education` of the model we ran above is `r round(coef(M1)[2], 2)`.
-`r round(coef(M1)[2], 2)` was printed by writing: 'r round(coef(M1)[2], 2)' (use back ticks!).
+`r round(coef(M1)[2], 2)` was printed by writing: <code>&grave;r `round(coef(M1)[2], 2)`&grave;</code> (use back ticks!).
 
 *What advantages does such a workflow bring?*
 ---
@@ -235,11 +235,10 @@ data$Education_cat <- cut(data$Education,
                    breaks=c(-Inf, 6, 12, Inf), labels=c("low","middle","high"))
 ```
 
-
 ```{r fig-1, fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center", fig.width=6, fig.height=3, eval=T, echo=T}
 ggplot(data, aes(x=Catholic, y=Fertility, shape=Education_cat)) + geom_point() +
   labs(x="Agriculture", y = "Fertility", shape="Education") + theme_classic()
-``` 
+```
 
 ---
 # 2. Figures
