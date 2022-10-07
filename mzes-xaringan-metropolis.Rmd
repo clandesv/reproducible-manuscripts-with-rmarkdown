@@ -94,7 +94,7 @@ BibOptions(
 
 # Why reproducible research?
 
-* **Reproducability**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency (and credibility).
+* **Reproducibility**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency (and credibility).
 
 * **Access**: Open access is given when research is freely available to everyone without any barriers, e.g., without requiring commercial software. E.g., 
 ```{r, out.width = "30%", fig.align='center', echo=F}
@@ -116,7 +116,7 @@ magick
 
 .pull-left[
 * **rmarkdown**
-  * combine R code and markdown-formatted text to produce HTML, PDF or Word documents
+  * combines R code and markdown-formatted text to produce HTML, PDF or Word documents
 * **pagedown** *(Xie et al. 2022)*
   * R Markdown based
   * creates paginated HTML reports and prints to PDF
