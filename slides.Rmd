@@ -96,7 +96,7 @@ BibOptions(
 
 * **Reproducibility**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency (and credibility).
 
-* **Access**: Open access is given when research is freely available to everyone without financial, legal, or technical barriers barriers ([UNESCO 2022](https://en.unesco.org/open-access/what-open-access)), for example commercial software. E.g.,
+* **Access**: Open access is given when research is freely available to everyone without financial, legal, or technical barriers ([UNESCO 2022](https://en.unesco.org/open-access/what-open-access)), for example commercial software. E.g.,
 ```{r, out.width = "30%", fig.align='center', echo=F}
 magick <- magick::image_read_pdf("workflow_access.pdf",
                        pages=1)
@@ -493,7 +493,7 @@ class: center, middle
 
 `r icons::fontawesome("github")`: clandesv/reproducible-manuscripts-with-RMD
 
-Xaringan Presentation on GitHub Pages: https://clandesv.github.io/reproducible-manuscripts-with-RMD/mzes-xaringan-metropolis.html
+Xaringan Presentation on GitHub Pages: https://clandesv.github.io/reproducible-manuscripts-with-RMD/slides.html
 
 R Markdown Template on OSF: https://osf.io/q395s
 
