@@ -181,7 +181,7 @@ How can you use these templates?
 ---
 # Pagedown: Working Paper (wp) Style
 
-```{r, out.width = "70%", fig.align='center', echo=F}
+```{r, out.width = "50%", fig.align='center', echo=F}
 knitr::include_graphics("pagedown-wp-style.png")
 ```
 
