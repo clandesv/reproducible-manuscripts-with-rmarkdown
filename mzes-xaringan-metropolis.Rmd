@@ -454,6 +454,38 @@ knitr::include_graphics("xaringan-inf-moonreader.png")
 
 
 ---
+# R trackdown package for improving collaborative writing
+
+`r icons::fontawesome("github")`: [ClaudioZandonella/trackdown
+](https://github.com/ClaudioZandonella/trackdown)
+
+* collaborative workflow for the writing and editing process with R Markdown
+* upload local .Rmd (or .Rnw) file as a plain-text file to Google Drive
+* use Markdown (or LaTeX) syntax and Google Docs options (e.g. suggest edits, add comments)
+* review and integrate all contributions
+* the final document can be downloaded and rendered locally
+
+
+---
+# R trackdown package for improving collaborative writing
+
+```{r trackdown-install, eval=F, echo=T}
+remotes::install_github("claudiozandonella/trackdown",
+                        build_vignettes = TRUE)
+```
+
+```{r trackdown-example, eval=F, echo=T}
+upload_file(file = "trackdown_example.Rmd",
+            gpath = "trackdown_example",
+            hide_code = TRUE)
+```
+
+* `download_file()`
+* `update_file()`
+* `render_file()`
+
+
+---
 class: center, middle
 
 # Thank you!
