@@ -96,7 +96,7 @@ BibOptions(
 
 * **Reproducibility**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency (and credibility).
 
-* **Access**: Open access is given when research is freely available to everyone without any barriers, e.g., without requiring commercial software. E.g., 
+* **Access**: Open access is given when research is freely available to everyone without financial, legal, or technical barriers barriers ([UNESCO 2022](https://en.unesco.org/open-access/what-open-access)), for example commercial software. E.g.,
 ```{r, out.width = "30%", fig.align='center', echo=F}
 magick <- magick::image_read_pdf("workflow_access.pdf",
                        pages=1)
@@ -137,9 +137,11 @@ knitr::include_graphics("R-libraries.jpeg")
 
 ]
 ---
-# Two templates (on OSF and Github)
+# Two templates (on OSF, Gdrive and Github)
 
 .pull-left[
+
+<font size="4">
 
 Bauer, P. 2021: 
 ```{r, out.width = "100%", fig.align='center', echo=F}
@@ -147,28 +149,41 @@ knitr::include_graphics("osf-2.png")
 ```
 
 
-`r icons::fontawesome("github")`: /paulcbauer/Writing_a_reproducable_paper_in_rmarkdown
+`r icons::fontawesome("github")`: [/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown)
+
+`r icons::fontawesome("google-drive")`:
+[/2021_Writing_a_reproducable_paper_in_rmarkdown](https://drive.google.com/drive/folders/1zJP3cNPrHN-gj0rcmbHQgg-XA0hqDXdd)
 
 Bauer, P.; Landesvatter, C. 2022:
 ```{r, out.width = "100%", fig.align='center', echo=F}
 knitr::include_graphics("osf-1.png")
 ```
 
-`r icons::fontawesome("github")`: /paulcbauer/Writing_a_reproducable_paper_in_pagedown
+`r icons::fontawesome("github")`: [/paulcbauer/Writing_a_reproducable_paper_in_pagedown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_pagedown)
 
+`r icons::fontawesome("google-drive")`: [/2021_Writing_a_reproducable_paper_in_pagedown](https://drive.google.com/drive/folders/1rWzj-Bu1EKqkSuE1gaFzduBJhzlThpkw)
+
+</font size>
 ]
 
 .pull-right[
 How can you use these templates?
-  * clone github repositories including: 
+  * download or clone all available files: 
     * 'paper.rmd'
     * 'references.bib'
     * 'data.csv'
     * 'american-sociological-association.csl'
     * styling files for pagedown: 'wp_paged.html', 'wp.css', 'wp-fonts.css', 'wp-pages.css'
   * open .Rproj
-  * start creating your first manuscript in our working paper (wp) style or modify the styling sheets
+  * start creating your first manuscript in rmd, use our working paper (wp) style or modify the styling sheets
 ]
+
+---
+# Pagedown: Working Paper (wp) Style
+
+```{r, out.width = "70%", fig.align='center', echo=F}
+knitr::include_graphics("pagedown-wp-style.png")
+```
 
 ---
 # Pre-Requisites for R Markdown and Pagedown
@@ -176,10 +191,9 @@ How can you use these templates?
 Both require: installation of R + recommended: Rstudio IDE 
 
 * R Markdown: 
-  * rmarkdown package
-  * other dependencies, e.g. knitr package
-  * if you work without Rstudio: Pandoc Installation
-  * if you want PDF output: a latex distribution, e.g. tinytex (a lightweight, cross-platform LaTeX distribution) 
+  * rmarkdown package + other dependencies, e.g. knitr package
+  * for working without Rstudio: Pandoc Installation
+  * for PDF output: a LaTeX distribution, e.g. tinytex (a lightweight, cross-platform LaTeX distribution) 
 
 ```{r eval=F, echo=T}
 install.packages(c('tinytex', 'rmarkdown'))
@@ -187,7 +201,9 @@ tinytex::install_tinytex()
 ```
 
 * Pagedown:
-  * all above + pagedown package
+  * rmarkdown package + other dependencies, e.g. knitr 
+  * pagedown package
+  * no LaTeX!
   
 ```{r eval=F, echo=T}
 remotes::install_github('rstudio/pagedown')
@@ -370,7 +386,7 @@ modelsummary(models,
 
 <font size="4">
 
-* For cross-referencing within your manuscript you can refer to Table 1 by using `\@ref(tab:table-1)` (include table-1 into the chunk option!).
+* For cross-referencing within your manuscript you can refer to Table 1 by using `\@ref(tab:table-1)` (use table-1 as the chunk name!).
 
 </font size>
 ]
@@ -446,6 +462,10 @@ class: center, middle
 `r icons::fontawesome("github")`: clandesv/reproducible-manuscripts-with-RMD
 
 Xaringan Presentation on GitHub Pages: https://clandesv.github.io/reproducible-manuscripts-with-RMD/mzes-xaringan-metropolis.html
+
+R Markdown Template on OSF: https://osf.io/q395s
+
+R Markdown and Pagedown Template on OSF: https://osf.io/k8jhx/
 
 
 
