@@ -1,90 +1,26 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Writing reproducible manuscripts in R Markdown and Pagedown</title>
+    <title>Writing reproducible manuscripts in R Markdown</title>
     <meta charset="utf-8" />
+    <meta name="author" content="Camille Landesvatter .font90[Mannheim Centre for European Research (MZES), University of Mannheim]   camille.landesvatter@uni-mannheim.de   MZES Website     Camille Landesvatter  " />
     <script src="slides_files/header-attrs/header-attrs.js"></script>
-    <link href="slides_files/remark-css/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="jobtalk_ks_mtheme.css" type="text/css" />
-    <link rel="stylesheet" href="jobtalk_ks_fonts_mtheme.css" type="text/css" />
+    <link rel="stylesheet" href="default.css" type="text/css" />
+    <link rel="stylesheet" href="mtheme.css" type="text/css" />
+    <link rel="stylesheet" href="fonts_mtheme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
 .title[
-# Writing reproducible manuscripts in R Markdown and Pagedown
+# Writing reproducible manuscripts in R Markdown
 ]
 .author[
-### <table class="authors">
-<tbody>
-<tr>
-<td>
-Camille Landesvatter
-</td>
-<td>
-Dr. Paul C. Bauer
-</td>
-</tr>
-<tr>
-<td>
-.font75[Mannheim Centre for European Research (MZES), University of Mannheim]
-</td>
-<td>
-.font75[Mannheim Centre for European Research (MZES), University of Mannheim]
-</td>
-</tr>
-</tbody>
-</table>
-<table class="contact">
-<tbody>
-<tr>
-<td>
-<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
-<path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
-</svg>
-<a href="mailto:camille.landesvatter@uni-mannheim.de"><code>camille.landesvatter@uni-mannheim.de</code></a>
-</td>
-<td>
-<svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
-<path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path>
-</svg>
-<a href="mailto:mail@paulcbauer.de"><code>mail@paulcbauer.de</code></a>
-</td>
-</tr>
-<tr>
-<td>
-<svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
-<path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path>
-</svg>
-<a href="https://www.mzes.uni-mannheim.de/d7/de/profiles/camille-marie-landesvatter"><code>MZES Website</code></a>
-</td>
-<td>
-<svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
-<path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path>
-</svg>
-<a href="https://www.mzes.uni-mannheim.de/d7/de/profiles/paul-c-bauer"><code>MZES Website</code></a>
-</td>
-</tr>
-<tr>
-<td>
-<svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
-<g groupmode="layer" id="layer6" label="icon"> <path style="stroke-width:0.0647871" d="M 343.75868,106.66243 V 79.430205 L 363.52365,63.999997 H 149.63354 L 20.476345,176.2736 h 85.656075 c -0.15534,2.12494 -0.21914,4.04644 -0.21914,6.22563 0,20.84472 7.2192,38.08662 21.67203,51.86089 14.45284,13.79702 32.25124,20.64784 53.32651,20.64784 4.92319,0 9.75059,-0.36794 14.43842,-1.02419 -2.90722,6.50082 -4.37457,12.52302 -4.37457,18.14228 0,9.87526 4.49924,20.4304 13.46715,31.6418 -39.23377,2.6705 -68.06112,9.73264 -86.43702,21.16322 -10.53108,6.49907 -19.000207,14.70396 -25.390349,24.5311 -6.390569,9.89933 -9.577754,20.51525 -9.577754,31.9616 0,9.64822 2.062375,18.33611 6.21907,26.06233 4.156694,7.7263 9.577757,14.07047 16.312223,18.98408 6.71825,4.96781 14.46899,9.10088 23.219,12.46874 8.73429,3.34378 17.40643,5.71858 26.06106,7.06258 8.62707,1.34222 17.20471,1.9985 25.70579,1.9985 13.46887,0 26.95353,-1.73428 40.54711,-5.18707 13.56165,-3.48461 26.28022,-8.64143 38.17105,-15.4927 11.85935,-6.80488 21.51545,-16.0865 28.9219,-27.7183 7.39024,-11.67998 11.09457,-24.80499 11.09457,-39.33613 0,-11.01584 -2.24964,-21.03852 -6.7502,-30.14073 -4.46864,-9.07202 -9.93785,-16.54102 -16.45271,-22.34403 -6.5008,-5.81263 -12.99987,-11.15539 -19.51512,-15.9679 -6.50083,-4.84488 -12.00021,-9.75058 -16.46884,-14.8129 -4.4848,-5.04657 -6.73444,-10.05419 -6.73444,-14.98395 0,-4.92145 1.73422,-9.67183 5.21588,-14.26559 3.45451,-4.6095 7.67376,-9.04795 12.60967,-13.30571 4.93756,-4.24944 9.87523,-8.96788 14.79665,-14.13302 4.92147,-5.14719 9.14072,-11.82739 12.60971,-20.00822 3.48467,-8.17907 5.20318,-17.44489 5.20318,-27.75679 0,-13.4527 -2.54714,-24.46065 -7.54735,-33.31348 -0.59369,-1.02243 -1.21757,-1.80338 -1.87511,-3.02225 l 56.90745,-46.672136 v 17.118526 c -7.39373,0.92969 -6.62422,5.34582 -6.62422,10.6352 v 128.66719 c 0,5.95832 4.8751,10.83382 10.83386,10.83382 h 3.98869 c 5.95835,0 10.83386,-4.87506 10.83386,-10.83382 V 117.29282 c 0,-5.27669 0.77741,-9.68801 -6.56167,-10.63039 z M 236.39865,329.14114 c 1.14099,0.7503 3.7039,2.78075 7.7184,6.03838 4.0495,3.24319 6.797,5.69582 8.26567,7.41432 1.43851,1.66381 3.5792,4.16501 6.37617,7.54734 2.81268,3.3744 4.7184,6.30394 5.71853,8.73425 1.00016,2.4767 2.01603,5.46089 3.04636,8.94556 0.98567,3.44488 1.48486,6.97595 1.48486,10.56169 0,17.04813 -6.56338,29.68007 -19.65604,37.85915 -13.125,8.18083 -28.76651,12.27368 -46.93767,12.27368 -9.18709,0 -18.2031,-1.09289 -27.06247,-3.1951 -8.84322,-2.11665 -17.31192,-5.3362 -25.39035,-9.60185 -8.07846,-4.25771 -14.57754,-10.20337 -19.50072,-17.79659 -4.93764,-7.64012 -7.40645,-16.41464 -7.40645,-26.24962 0,-10.32022 2.79692,-19.28987 8.42233,-26.90588 5.59343,-7.62564 12.93774,-13.3919 22.03208,-17.3154 9.0624,-3.94582 18.24946,-6.74232 27.56166,-8.39827 9.31221,-1.7023 18.79679,-2.555 28.43842,-2.555 4.46862,0 7.93582,0.25115 10.40465,0.69607 0.45456,0.21918 3.03188,2.07025 7.73456,5.56326 4.70401,3.46237 7.62565,5.59519 8.75047,6.38401 z m -3.35823,-100.5779 c -7.40648,8.85938 -17.73454,13.2882 -30.95363,13.2882 -11.85933,0 -22.29766,-4.76482 -31.26554,-14.31195 -8.99984,-9.52309 -15.42235,-20.32803 -19.34408,-32.43061 -3.93752,-12.10871 -5.90585,-23.98423 -5.90585,-35.648 0,-13.6942 3.59542,-25.35184 10.7809,-34.97598 7.18727,-9.64952 17.49915,-14.48477 30.93786,-14.48477 11.87507,0 22.37423,5.03825 31.43704,15.15677 9.09434,10.08482 15.60961,21.41303 19.5169,33.96799 3.92176,12.5392 5.87345,24.52979 5.87345,35.98399 0,13.44658 -3.70256,24.60984 -11.07663,33.45436 z" id="path2"></path> </g>
-</svg>
-<a href="https://scholar.google.de/citations?user=S-lC2DgAAAAJ&amp;hl=de"><code>Camille Landesvatter</code></a>
-</td>
-<td>
-<svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg">
-<g groupmode="layer" id="layer6" label="icon"> <path style="stroke-width:0.0647871" d="M 343.75868,106.66243 V 79.430205 L 363.52365,63.999997 H 149.63354 L 20.476345,176.2736 h 85.656075 c -0.15534,2.12494 -0.21914,4.04644 -0.21914,6.22563 0,20.84472 7.2192,38.08662 21.67203,51.86089 14.45284,13.79702 32.25124,20.64784 53.32651,20.64784 4.92319,0 9.75059,-0.36794 14.43842,-1.02419 -2.90722,6.50082 -4.37457,12.52302 -4.37457,18.14228 0,9.87526 4.49924,20.4304 13.46715,31.6418 -39.23377,2.6705 -68.06112,9.73264 -86.43702,21.16322 -10.53108,6.49907 -19.000207,14.70396 -25.390349,24.5311 -6.390569,9.89933 -9.577754,20.51525 -9.577754,31.9616 0,9.64822 2.062375,18.33611 6.21907,26.06233 4.156694,7.7263 9.577757,14.07047 16.312223,18.98408 6.71825,4.96781 14.46899,9.10088 23.219,12.46874 8.73429,3.34378 17.40643,5.71858 26.06106,7.06258 8.62707,1.34222 17.20471,1.9985 25.70579,1.9985 13.46887,0 26.95353,-1.73428 40.54711,-5.18707 13.56165,-3.48461 26.28022,-8.64143 38.17105,-15.4927 11.85935,-6.80488 21.51545,-16.0865 28.9219,-27.7183 7.39024,-11.67998 11.09457,-24.80499 11.09457,-39.33613 0,-11.01584 -2.24964,-21.03852 -6.7502,-30.14073 -4.46864,-9.07202 -9.93785,-16.54102 -16.45271,-22.34403 -6.5008,-5.81263 -12.99987,-11.15539 -19.51512,-15.9679 -6.50083,-4.84488 -12.00021,-9.75058 -16.46884,-14.8129 -4.4848,-5.04657 -6.73444,-10.05419 -6.73444,-14.98395 0,-4.92145 1.73422,-9.67183 5.21588,-14.26559 3.45451,-4.6095 7.67376,-9.04795 12.60967,-13.30571 4.93756,-4.24944 9.87523,-8.96788 14.79665,-14.13302 4.92147,-5.14719 9.14072,-11.82739 12.60971,-20.00822 3.48467,-8.17907 5.20318,-17.44489 5.20318,-27.75679 0,-13.4527 -2.54714,-24.46065 -7.54735,-33.31348 -0.59369,-1.02243 -1.21757,-1.80338 -1.87511,-3.02225 l 56.90745,-46.672136 v 17.118526 c -7.39373,0.92969 -6.62422,5.34582 -6.62422,10.6352 v 128.66719 c 0,5.95832 4.8751,10.83382 10.83386,10.83382 h 3.98869 c 5.95835,0 10.83386,-4.87506 10.83386,-10.83382 V 117.29282 c 0,-5.27669 0.77741,-9.68801 -6.56167,-10.63039 z M 236.39865,329.14114 c 1.14099,0.7503 3.7039,2.78075 7.7184,6.03838 4.0495,3.24319 6.797,5.69582 8.26567,7.41432 1.43851,1.66381 3.5792,4.16501 6.37617,7.54734 2.81268,3.3744 4.7184,6.30394 5.71853,8.73425 1.00016,2.4767 2.01603,5.46089 3.04636,8.94556 0.98567,3.44488 1.48486,6.97595 1.48486,10.56169 0,17.04813 -6.56338,29.68007 -19.65604,37.85915 -13.125,8.18083 -28.76651,12.27368 -46.93767,12.27368 -9.18709,0 -18.2031,-1.09289 -27.06247,-3.1951 -8.84322,-2.11665 -17.31192,-5.3362 -25.39035,-9.60185 -8.07846,-4.25771 -14.57754,-10.20337 -19.50072,-17.79659 -4.93764,-7.64012 -7.40645,-16.41464 -7.40645,-26.24962 0,-10.32022 2.79692,-19.28987 8.42233,-26.90588 5.59343,-7.62564 12.93774,-13.3919 22.03208,-17.3154 9.0624,-3.94582 18.24946,-6.74232 27.56166,-8.39827 9.31221,-1.7023 18.79679,-2.555 28.43842,-2.555 4.46862,0 7.93582,0.25115 10.40465,0.69607 0.45456,0.21918 3.03188,2.07025 7.73456,5.56326 4.70401,3.46237 7.62565,5.59519 8.75047,6.38401 z m -3.35823,-100.5779 c -7.40648,8.85938 -17.73454,13.2882 -30.95363,13.2882 -11.85933,0 -22.29766,-4.76482 -31.26554,-14.31195 -8.99984,-9.52309 -15.42235,-20.32803 -19.34408,-32.43061 -3.93752,-12.10871 -5.90585,-23.98423 -5.90585,-35.648 0,-13.6942 3.59542,-25.35184 10.7809,-34.97598 7.18727,-9.64952 17.49915,-14.48477 30.93786,-14.48477 11.87507,0 22.37423,5.03825 31.43704,15.15677 9.09434,10.08482 15.60961,21.41303 19.5169,33.96799 3.92176,12.5392 5.87345,24.52979 5.87345,35.98399 0,13.44658 -3.70256,24.60984 -11.07663,33.45436 z" id="path2"></path> </g>
-</svg>
-<a href="https://scholar.google.com/citations?hl=en&amp;user=hw-b-MkAAAAJ"><code>Paul C. Bauer</code></a>
-</td>
-</tr>
-</tbody>
-</table>
+### Camille Landesvatter<br>.font90[Mannheim Centre for European Research (MZES), University of Mannheim]<br><svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z"></path></svg> <a href="mailto:camille.landesvatter@uni-mannheim.de"><code>camille.landesvatter@uni-mannheim.de</code></a><br><svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <path d="M336.5 160C322 70.7 287.8 8 248 8s-74 62.7-88.5 152h177zM152 256c0 22.2 1.2 43.5 3.3 64h185.3c2.1-20.5 3.3-41.8 3.3-64s-1.2-43.5-3.3-64H155.3c-2.1 20.5-3.3 41.8-3.3 64zm324.7-96c-28.6-67.9-86.5-120.4-158-141.6 24.4 33.8 41.2 84.7 50 141.6h108zM177.2 18.4C105.8 39.6 47.8 92.1 19.3 160h108c8.7-56.9 25.5-107.8 49.9-141.6zM487.4 192H372.7c2.1 21 3.3 42.5 3.3 64s-1.2 43-3.3 64h114.6c5.5-20.5 8.6-41.8 8.6-64s-3.1-43.5-8.5-64zM120 256c0-21.5 1.2-43 3.3-64H8.6C3.2 212.5 0 233.8 0 256s3.2 43.5 8.6 64h114.6c-2-21-3.2-42.5-3.2-64zm39.5 96c14.5 89.3 48.7 152 88.5 152s74-62.7 88.5-152h-177zm159.3 141.6c71.4-21.2 129.4-73.7 158-141.6h-108c-8.8 56.9-25.6 107.8-50 141.6zM19.3 352c28.6 67.9 86.5 120.4 158 141.6-24.4-33.8-41.2-84.7-50-141.6h-108z"></path></svg> <a href="https://www.mzes.uni-mannheim.de/d7/de/profiles/camille-marie-landesvatter"><code>MZES Website</code></a><br><svg viewBox="0 0 384 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"> <g groupmode="layer" id="layer6" label="icon"> <path style="stroke-width:0.0647871" d="M 343.75868,106.66243 V 79.430205 L 363.52365,63.999997 H 149.63354 L 20.476345,176.2736 h 85.656075 c -0.15534,2.12494 -0.21914,4.04644 -0.21914,6.22563 0,20.84472 7.2192,38.08662 21.67203,51.86089 14.45284,13.79702 32.25124,20.64784 53.32651,20.64784 4.92319,0 9.75059,-0.36794 14.43842,-1.02419 -2.90722,6.50082 -4.37457,12.52302 -4.37457,18.14228 0,9.87526 4.49924,20.4304 13.46715,31.6418 -39.23377,2.6705 -68.06112,9.73264 -86.43702,21.16322 -10.53108,6.49907 -19.000207,14.70396 -25.390349,24.5311 -6.390569,9.89933 -9.577754,20.51525 -9.577754,31.9616 0,9.64822 2.062375,18.33611 6.21907,26.06233 4.156694,7.7263 9.577757,14.07047 16.312223,18.98408 6.71825,4.96781 14.46899,9.10088 23.219,12.46874 8.73429,3.34378 17.40643,5.71858 26.06106,7.06258 8.62707,1.34222 17.20471,1.9985 25.70579,1.9985 13.46887,0 26.95353,-1.73428 40.54711,-5.18707 13.56165,-3.48461 26.28022,-8.64143 38.17105,-15.4927 11.85935,-6.80488 21.51545,-16.0865 28.9219,-27.7183 7.39024,-11.67998 11.09457,-24.80499 11.09457,-39.33613 0,-11.01584 -2.24964,-21.03852 -6.7502,-30.14073 -4.46864,-9.07202 -9.93785,-16.54102 -16.45271,-22.34403 -6.5008,-5.81263 -12.99987,-11.15539 -19.51512,-15.9679 -6.50083,-4.84488 -12.00021,-9.75058 -16.46884,-14.8129 -4.4848,-5.04657 -6.73444,-10.05419 -6.73444,-14.98395 0,-4.92145 1.73422,-9.67183 5.21588,-14.26559 3.45451,-4.6095 7.67376,-9.04795 12.60967,-13.30571 4.93756,-4.24944 9.87523,-8.96788 14.79665,-14.13302 4.92147,-5.14719 9.14072,-11.82739 12.60971,-20.00822 3.48467,-8.17907 5.20318,-17.44489 5.20318,-27.75679 0,-13.4527 -2.54714,-24.46065 -7.54735,-33.31348 -0.59369,-1.02243 -1.21757,-1.80338 -1.87511,-3.02225 l 56.90745,-46.672136 v 17.118526 c -7.39373,0.92969 -6.62422,5.34582 -6.62422,10.6352 v 128.66719 c 0,5.95832 4.8751,10.83382 10.83386,10.83382 h 3.98869 c 5.95835,0 10.83386,-4.87506 10.83386,-10.83382 V 117.29282 c 0,-5.27669 0.77741,-9.68801 -6.56167,-10.63039 z M 236.39865,329.14114 c 1.14099,0.7503 3.7039,2.78075 7.7184,6.03838 4.0495,3.24319 6.797,5.69582 8.26567,7.41432 1.43851,1.66381 3.5792,4.16501 6.37617,7.54734 2.81268,3.3744 4.7184,6.30394 5.71853,8.73425 1.00016,2.4767 2.01603,5.46089 3.04636,8.94556 0.98567,3.44488 1.48486,6.97595 1.48486,10.56169 0,17.04813 -6.56338,29.68007 -19.65604,37.85915 -13.125,8.18083 -28.76651,12.27368 -46.93767,12.27368 -9.18709,0 -18.2031,-1.09289 -27.06247,-3.1951 -8.84322,-2.11665 -17.31192,-5.3362 -25.39035,-9.60185 -8.07846,-4.25771 -14.57754,-10.20337 -19.50072,-17.79659 -4.93764,-7.64012 -7.40645,-16.41464 -7.40645,-26.24962 0,-10.32022 2.79692,-19.28987 8.42233,-26.90588 5.59343,-7.62564 12.93774,-13.3919 22.03208,-17.3154 9.0624,-3.94582 18.24946,-6.74232 27.56166,-8.39827 9.31221,-1.7023 18.79679,-2.555 28.43842,-2.555 4.46862,0 7.93582,0.25115 10.40465,0.69607 0.45456,0.21918 3.03188,2.07025 7.73456,5.56326 4.70401,3.46237 7.62565,5.59519 8.75047,6.38401 z m -3.35823,-100.5779 c -7.40648,8.85938 -17.73454,13.2882 -30.95363,13.2882 -11.85933,0 -22.29766,-4.76482 -31.26554,-14.31195 -8.99984,-9.52309 -15.42235,-20.32803 -19.34408,-32.43061 -3.93752,-12.10871 -5.90585,-23.98423 -5.90585,-35.648 0,-13.6942 3.59542,-25.35184 10.7809,-34.97598 7.18727,-9.64952 17.49915,-14.48477 30.93786,-14.48477 11.87507,0 22.37423,5.03825 31.43704,15.15677 9.09434,10.08482 15.60961,21.41303 19.5169,33.96799 3.92176,12.5392 5.87345,24.52979 5.87345,35.98399 0,13.44658 -3.70256,24.60984 -11.07663,33.45436 z" id="path2"></path> </g></svg> <a href="https://scholar.google.de/citations?user=S-lC2DgAAAAJ&amp;hl=de"><code>Camille Landesvatter</code></a><br><br>
 ]
 .date[
-### Mannheim Open Science Day Reprohack <br /> Oktober 11, 2022
+### Mannheim Open Science Office, Online Event<br /> June 21, 2023
 ]
 
 ---
@@ -92,86 +28,138 @@ Dr. Paul C. Bauer
 
 
 
-
-# Why reproducible research?
-
-* **Reproducibility**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency (and credibility).
-
-* **Access**: Open access is given when research is freely available to everyone without financial, legal, or technical barriers ([UNESCO 2022](https://en.unesco.org/open-access/what-open-access)), for example commercial software. E.g.,
-&lt;img src="slides_files/figure-html/unnamed-chunk-1-1.png" width="30%" style="display: block; margin: auto;" /&gt;
-
-* **Errors**: Everyone (including yourself) can spot errors. Plus, automation (e.g., code that produces findings is tied to the document itself) avoids a slow and error-prone cut-and-paste approach.
-
-* **Revisions**: Revision of manuscripts and other pieces of research gets easier when steps are reproducible and automated. Plus, easy version control with git, etc.
-
-
-
-
----
-# Tools for reproducible manuscripts in R
+# What is a Reproducible Manuscript?
 
 .pull-left[
-* **rmarkdown**
-  * combines R code and markdown-formatted text to produce HTML, PDF or Word documents
-* **pagedown** *(Xie et al. 2022)*
-  * R Markdown based
-  * creates paginated HTML reports and prints to PDF
-  * this includes headers, footers, etc.
-  * highly customizable due to HTML and CSS styling sheets (YAML Metadata)
-  * many available templates, e.g. CV, thesis, letter, journal templates
+&lt;blockquote&gt;&lt;font size="5"&gt;A reproducible manuscript is a research document that includes all the necessary information and code to reproduce the reported findings and results.&lt;/font size&gt;&lt;/blockquote&gt;
 
+&lt;blockquote&gt;&lt;font size="5"&gt;It combines the traditional elements of a manuscript (text, figures, tables) with the computational code used for data analysis and visualizations.&lt;/font size&gt;&lt;/blockquote&gt;
 ]
+
 
 .pull-right[
-* Other (R Markdown based): posterdown, bookdown, xaringan, etc.
+- Reproducible Manuscripts versus "Traditional Workflows"?
 
-&lt;img src="R-libraries.jpeg" width="50%" style="display: block; margin: auto;" /&gt;
-
-&lt;font size="2"&gt;Source: Indrajeet Patil on Twitter&lt;/font size&gt;
-
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="screenshot-workflow.png" alt="A 'traditional' workflow with 3 tabs open" width="100%" /&gt;
+&lt;p class="caption"&gt;A 'traditional' workflow with 3 tabs open&lt;/p&gt;
+&lt;/div&gt;
 ]
 ---
-# Two templates (on OSF, Gdrive and Github)
+class: center, middle
+&lt;font size="6"&gt;
+How do you currently incorporate your research findings into your paper manuscript?
+
+Let us know on Slido:&lt;br&gt;
+https://app.sli.do/event/m8n4VwLfmo1a9yHT6NViyH
+&lt;/font size&gt;
+
+---
+
+# Why Reproducible Manuscripts?
+
+- .cyan[Trust and Credibility]: Reproducible manuscripts enhance the integrity of research, as it allows for thorough scrutiny of methods, data, and analyses. They allow others to independently verify and replicate the reported results.
+
+
+- .cyan[Efficiency]: Adopting reproducible workflows improves efficiency, as researchers can easily update and modify their work, easily spot errors and save time in the long run.
+
+
+* .cyan[Sharing and Collaboration]: By providing transparent and accessible documentation of methods, data, and code, reproducible manuscripts promote collaboration and allow others to build upon and replicate the research findings. This efficient sharing of knowledge fosters faster progress in scientific discovery and innovation.
+---
+
+# How to create Reproducible Manuscripts...
+
+- ... using R Markdown?
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="slides_files/figure-html/unnamed-chunk-2-1.png" alt="Coding Language // Framework // R Markdown related packages" width="80%" /&gt;
+&lt;p class="caption"&gt;Coding Language // Framework // R Markdown related packages&lt;/p&gt;
+&lt;/div&gt;
+---
+# R Markdown
+
+- R Markdown is a powerful tool that allows you to blend text, code, and output in a single document.
+- essential tool for reproducible research and creating dynamic reports, manuscripts, presentations and many more.
+
+**rmarkdown** package (Allaire et al. 2023)
+
+- the powerhouse behind R Markdown, providing the tools and functions to render your documents into different formats like HTML, PDF, Word, and more.
+- allows you to effortlessly switch between output formats, making it easy to share your work with collaborators, supervisors, or even publish it online.
+  - but also consider documenting your data analysis process with Rmd
+- using R Markdown eliminates the need for manual updates or copy-pasting code and results into different documents, saving you time and reducing the chances of errors.
+
+---
+# R Markdown: Template (Bauer &amp; Landesvatter 2023)
+
+OSF: https://osf.io/q395s
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M339 314.9L175.4 32h161.2l163.6 282.9H339zm-137.5 23.6L120.9 480h310.5L512 338.5H201.5zM154.1 67.4L0 338.5 80.6 480 237 208.8 154.1 67.4z"&gt;&lt;/path&gt;&lt;/svg&gt;:
+[/2021_Writing_a_reproducable_paper_in_rmarkdown](https://drive.google.com/drive/folders/1zJP3cNPrHN-gj0rcmbHQgg-XA0hqDXdd)
+
+
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: [/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown)
 
 .pull-left[
 
 &lt;font size="4"&gt;
 
-Bauer, P. 2021: 
-&lt;img src="osf-2.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="osf-rmd.png" alt="Bauer, P.; Landesvatter, C. 2023" width="100%" /&gt;
+&lt;p class="caption"&gt;Bauer, P.; Landesvatter, C. 2023&lt;/p&gt;
+&lt;/div&gt;
 
 
-&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: [/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown)
+]
 
-&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M339 314.9L175.4 32h161.2l163.6 282.9H339zm-137.5 23.6L120.9 480h310.5L512 338.5H201.5zM154.1 67.4L0 338.5 80.6 480 237 208.8 154.1 67.4z"&gt;&lt;/path&gt;&lt;/svg&gt;:
-[/2021_Writing_a_reproducable_paper_in_rmarkdown](https://drive.google.com/drive/folders/1zJP3cNPrHN-gj0rcmbHQgg-XA0hqDXdd)
+.pull-right[
+How can you use this templates?
+  * download all available files: 
+    * 'paper.rmd'
+    * 'references.bib'
+    * 'data.csv'
+    * 'american-sociological-association.csl'
+  * open .Rproj
+  * start creating your first manuscript in rmd, use our working paper (wp) style or modify the styling sheets
+]
 
-Bauer, P.; Landesvatter, C. 2022:
-&lt;img src="osf-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+---
+# Pagedown (Xie et al. 2022)
+
+* R Markdown based extension
+* create paginated HTML reports that are converted into PDF format
+* add headers, footers, page numbers, and more to your documents
+* by specifying YAML metadata, you can customize various aspects of your document's style, such as fonts, colors, margins, and page dimensions
+  * HTML and CSS styling sheets
+* pagedown offers a range of pre-built templates for different purposes, such as CVs, theses, letters, and journal articles, making it easy to get started
+* create professional-looking documents without the need for complex LaTeX formatting or advanced CSS knowledge
+* greate choice for generating polished reports or preparing documents that require a print-ready PDF format
+
+
+---
+# Pagedown: Template (Bauer &amp; Landesvatter 2023)
+
+.pull-left[
+&lt;font size="4"&gt;
+
+OSF: https://osf.io/k8jhx/
 
 &lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: [/paulcbauer/Writing_a_reproducable_paper_in_pagedown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_pagedown)
 
 &lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M339 314.9L175.4 32h161.2l163.6 282.9H339zm-137.5 23.6L120.9 480h310.5L512 338.5H201.5zM154.1 67.4L0 338.5 80.6 480 237 208.8 154.1 67.4z"&gt;&lt;/path&gt;&lt;/svg&gt;: [/2021_Writing_a_reproducable_paper_in_pagedown](https://drive.google.com/drive/folders/1rWzj-Bu1EKqkSuE1gaFzduBJhzlThpkw)
 
-&lt;/font size&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="osf-pagedown.png" alt="Bauer, P.; Landesvatter, C. 2023" width="100%" /&gt;
+&lt;p class="caption"&gt;Bauer, P.; Landesvatter, C. 2023&lt;/p&gt;
+&lt;/div&gt;
 ]
+
+&lt;/font size&gt;
 
 .pull-right[
-How can you use these templates?
-  * download or clone all available files: 
-    * 'paper.rmd'
-    * 'references.bib'
-    * 'data.csv'
-    * 'american-sociological-association.csl'
-    * styling files for pagedown: 'wp_paged.html', 'wp.css', 'wp-fonts.css', 'wp-pages.css'
-  * open .Rproj
-  * start creating your first manuscript in rmd, use our working paper (wp) style or modify the styling sheets
+&lt;img src="pagedown-wp-style.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
----
-# Pagedown: Working Paper (wp) Style
-
-&lt;img src="pagedown-wp-style.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 # Pre-Requisites for R Markdown and Pagedown
@@ -199,698 +187,40 @@ tinytex::install_tinytex()
 remotes::install_github('rstudio/pagedown')
 ```
 
+
 ---
 class: center, middle
 
-# Three Examples
-## 1. Inline code &amp; results 
-## 2. Figures
-## 3. Tables
+# Structure of a Reproducible Manuscript (.Rmd)
 
----
-# 1. Inline code &amp; results
-
-&lt;u&gt;Example 1:&lt;/u&gt;
-
-Writing &lt;code&gt;&amp;grave;r `3 + 7`&amp;grave;&lt;/code&gt; (use back ticks!) will calculate and insert 10 into your text.   
-
-&lt;u&gt;Example 2:&lt;/u&gt;
-
-Imagine you want to automate the display of regression coefficients within your manuscript.
-
-
-```r
-data &lt;- read.csv("data.csv")
-```
-
-
-```r
-M1 &lt;- lm(Fertility ~ Education + Agriculture, data = data)
-```
-
-Now we can write some plain text with inline code:
-The coefficient of `Education` of the model we ran above is -0.96.
--0.96 was printed by writing: &lt;code&gt;&amp;grave;r `round(coef(M1)[2], 2)`&amp;grave;&lt;/code&gt; (use back ticks!).
-
-*What advantages does such a workflow bring?*
----
-# 2. Figures
-
-Example: You want to create, edit and insert a ggplot2 graph alongside its code and the text.
-
-&lt;font size="4"&gt;
-
-
-```r
-data$Education_cat &lt;- cut(data$Education, 
-                   breaks=c(-Inf, 6, 12, Inf), labels=c("low","middle","high"))
-```
-
-````
-```{r fig-1, fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center",
-fig.width=6, fig.height=3, eval=T, echo=T}
-ggplot(data, aes(x=Catholic, y=Fertility, shape=Education_cat)) + geom_point() +
-  labs(x="Agriculture", y = "Fertility", shape="Education") + theme_classic()
-```
-````
-&lt;/font size&gt;
-
-&lt;style&gt;
-p.caption {
-  font-size: 0.6em;
-}
-&lt;/style&gt;
-
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="slides_files/figure-html/unnamed-chunk-9-1.png" alt="Fig 1. Fertility and Agriculture by Education"  /&gt;
-&lt;p class="caption"&gt;Fig 1. Fertility and Agriculture by Education&lt;/p&gt;
-&lt;/div&gt;
-
-
----
-# 2. Figures
-
-* For cross-referencing within your manuscript you can refer to Figure 1 by using `\@ref(fig:fig-1)`.
-
-* But pay attention to your code chunk options. In the previous example:
-
-&lt;blockquote&gt; &lt;font size="6"&gt;{r fig-1, fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center", fig.width=6, fig.height=3, eval=T, echo=T} &lt;/font size&gt;&lt;/blockquote&gt; 
-
-*What do the different code chunk options mean?*
-
-
-
+Demonstration in R Studio&lt;br&gt;
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: [/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown)
 
 
 
 ---
-# 3. Tables
+class: center, middle
 
-Example 1: You want to show summary statistics of your data.
-
-.pull-left[
-
-```r
-library(stargazer)
-stargazer(data, 
-          title = "Summary table with stargazer",
-          label="tab1", 
-          header=FALSE,
-          table.placement = "H", 
-          type="html",
-          font.size = "small")
-```
-]
-
-.pull-right[
-
-&lt;table style="text-align:center"&gt;&lt;caption&gt;&lt;strong&gt;Summary table with stargazer&lt;/strong&gt;&lt;/caption&gt;
-&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Fertility&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;70.143&lt;/td&gt;&lt;td&gt;12.492&lt;/td&gt;&lt;td&gt;35.000&lt;/td&gt;&lt;td&gt;92.500&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Agriculture&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;50.660&lt;/td&gt;&lt;td&gt;22.711&lt;/td&gt;&lt;td&gt;1.200&lt;/td&gt;&lt;td&gt;89.700&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Examination&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;16.489&lt;/td&gt;&lt;td&gt;7.978&lt;/td&gt;&lt;td&gt;3&lt;/td&gt;&lt;td&gt;37&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Education&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;10.979&lt;/td&gt;&lt;td&gt;9.615&lt;/td&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;53&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Catholic&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;41.144&lt;/td&gt;&lt;td&gt;41.705&lt;/td&gt;&lt;td&gt;2.150&lt;/td&gt;&lt;td&gt;100.000&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Infant.Mortality&lt;/td&gt;&lt;td&gt;47&lt;/td&gt;&lt;td&gt;19.943&lt;/td&gt;&lt;td&gt;2.913&lt;/td&gt;&lt;td&gt;10.800&lt;/td&gt;&lt;td&gt;26.600&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-] 
- 
- 
----
-# 3. Tables
-
-Example 1b: You want to show summary statistics of a subset of your data.
-
-.pull-left[
-
-```r
-library(stargazer)
-stargazer(data %&gt;% filter(Education&gt;=15),
-          title = "Summary table with stargazer",
-          label="tab1", 
-          header=FALSE,
-          table.placement = "H", 
-          type="html",
-          font.size = "small")
-```
-]
-
-.pull-right[
-
-&lt;table style="text-align:center"&gt;&lt;caption&gt;&lt;strong&gt;Summary table with stargazer&lt;/strong&gt;&lt;/caption&gt;
-&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Statistic&lt;/td&gt;&lt;td&gt;N&lt;/td&gt;&lt;td&gt;Mean&lt;/td&gt;&lt;td&gt;St. Dev.&lt;/td&gt;&lt;td&gt;Min&lt;/td&gt;&lt;td&gt;Max&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="text-align:left"&gt;Fertility&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;54.013&lt;/td&gt;&lt;td&gt;13.239&lt;/td&gt;&lt;td&gt;35.000&lt;/td&gt;&lt;td&gt;76.900&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Agriculture&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;24.750&lt;/td&gt;&lt;td&gt;14.964&lt;/td&gt;&lt;td&gt;1.200&lt;/td&gt;&lt;td&gt;46.600&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Examination&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;26.125&lt;/td&gt;&lt;td&gt;7.791&lt;/td&gt;&lt;td&gt;16&lt;/td&gt;&lt;td&gt;37&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Education&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;28.125&lt;/td&gt;&lt;td&gt;11.692&lt;/td&gt;&lt;td&gt;15&lt;/td&gt;&lt;td&gt;53&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Catholic&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;25.738&lt;/td&gt;&lt;td&gt;21.527&lt;/td&gt;&lt;td&gt;2.150&lt;/td&gt;&lt;td&gt;58.330&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td style="text-align:left"&gt;Infant.Mortality&lt;/td&gt;&lt;td&gt;8&lt;/td&gt;&lt;td&gt;18.875&lt;/td&gt;&lt;td&gt;3.634&lt;/td&gt;&lt;td&gt;10.800&lt;/td&gt;&lt;td&gt;23.000&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan="6" style="border-bottom: 1px solid black"&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-] 
-
----
-# 3. Tables
-
-&lt;font size="3"&gt;
-
-.pull-left[
-````
-```{r table-1, eval=T, echo=T, results='hide'}
-M1 &lt;- lm(Fertility ~ Education + Agriculture, data = data)
-M2 &lt;- lm(Fertility ~ Education + Catholic, data = data)
-models &lt;- list("M1" = M1, "M2" =  M2)
-
-library(gt)
-library(modelsummary)
-
-modelsummary(models,
-             title = 'Table 1. Linear regression',
-             output = 'gt',
-             notes = "Notes: some notes...") %&gt;%
-  tab_spanner(label = 'Dependent variable: Fertility', columns = 2:3) %&gt;%
-  tab_options(
-    table.font.size = 16, data_row.padding = px(1),
-    table.border.top.color = "white", heading.border.bottom.color = "black",
-    row_group.border.top.color = "black",
-    row_group.border.bottom.color = "white", table.border.bottom.color = "white",
-    column_labels.border.top.color = "black", column_labels.border.bottom.color = "black",
-    table_body.hlines.color = "white"
-  )
-```
-````
-
-&lt;font size="4"&gt;
-
-* For cross-referencing within your manuscript you can refer to Table 1 by using `\@ref(tab:table-1)` (use table-1 as the chunk name!).
-
-&lt;/font size&gt;
-]
-
-
-&lt;/font size&gt;
-
-.pull-right[
-<div id="ktuotozits" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
-}
-
-#ktuotozits .gt_table {
-  display: table;
-  border-collapse: collapse;
-  margin-left: auto;
-  margin-right: auto;
-  color: #333333;
-  font-size: 16px;
-  font-weight: normal;
-  font-style: normal;
-  background-color: #FFFFFF;
-  width: auto;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #FFFFFF;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-}
-
-#ktuotozits .gt_heading {
-  background-color: #FFFFFF;
-  text-align: center;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ktuotozits .gt_title {
-  color: #333333;
-  font-size: 125%;
-  font-weight: initial;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-color: #FFFFFF;
-  border-bottom-width: 0;
-}
-
-#ktuotozits .gt_subtitle {
-  color: #333333;
-  font-size: 85%;
-  font-weight: initial;
-  padding-top: 0;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-color: #FFFFFF;
-  border-top-width: 0;
-}
-
-#ktuotozits .gt_bottom_border {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #000000;
-}
-
-#ktuotozits .gt_col_headings {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #000000;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #000000;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-}
-
-#ktuotozits .gt_col_heading {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 6px;
-  padding-left: 5px;
-  padding-right: 5px;
-  overflow-x: hidden;
-}
-
-#ktuotozits .gt_column_spanner_outer {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: normal;
-  text-transform: inherit;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 4px;
-  padding-right: 4px;
-}
-
-#ktuotozits .gt_column_spanner_outer:first-child {
-  padding-left: 0;
-}
-
-#ktuotozits .gt_column_spanner_outer:last-child {
-  padding-right: 0;
-}
-
-#ktuotozits .gt_column_spanner {
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #000000;
-  vertical-align: bottom;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  overflow-x: hidden;
-  display: inline-block;
-  width: 100%;
-}
-
-#ktuotozits .gt_group_heading {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #000000;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-}
-
-#ktuotozits .gt_empty_group_heading {
-  padding: 0.5px;
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #000000;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #FFFFFF;
-  vertical-align: middle;
-}
-
-#ktuotozits .gt_from_md > :first-child {
-  margin-top: 0;
-}
-
-#ktuotozits .gt_from_md > :last-child {
-  margin-bottom: 0;
-}
-
-#ktuotozits .gt_row {
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-left: 5px;
-  padding-right: 5px;
-  margin: 10px;
-  border-top-style: solid;
-  border-top-width: 1px;
-  border-top-color: #FFFFFF;
-  border-left-style: none;
-  border-left-width: 1px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 1px;
-  border-right-color: #D3D3D3;
-  vertical-align: middle;
-  overflow-x: hidden;
-}
-
-#ktuotozits .gt_stub {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ktuotozits .gt_stub_row_group {
-  color: #333333;
-  background-color: #FFFFFF;
-  font-size: 100%;
-  font-weight: initial;
-  text-transform: inherit;
-  border-right-style: solid;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-  padding-left: 5px;
-  padding-right: 5px;
-  vertical-align: top;
-}
-
-#ktuotozits .gt_row_group_first td {
-  border-top-width: 2px;
-}
-
-#ktuotozits .gt_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ktuotozits .gt_first_summary_row {
-  border-top-style: solid;
-  border-top-color: #D3D3D3;
-}
-
-#ktuotozits .gt_first_summary_row.thick {
-  border-top-width: 2px;
-}
-
-#ktuotozits .gt_last_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ktuotozits .gt_grand_summary_row {
-  color: #333333;
-  background-color: #FFFFFF;
-  text-transform: inherit;
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ktuotozits .gt_first_grand_summary_row {
-  padding-top: 8px;
-  padding-bottom: 8px;
-  padding-left: 5px;
-  padding-right: 5px;
-  border-top-style: double;
-  border-top-width: 6px;
-  border-top-color: #D3D3D3;
-}
-
-#ktuotozits .gt_striped {
-  background-color: rgba(128, 128, 128, 0.05);
-}
-
-#ktuotozits .gt_table_body {
-  border-top-style: solid;
-  border-top-width: 2px;
-  border-top-color: #D3D3D3;
-  border-bottom-style: solid;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-}
-
-#ktuotozits .gt_footnotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ktuotozits .gt_footnote {
-  margin: 0px;
-  font-size: 90%;
-  padding-left: 4px;
-  padding-right: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ktuotozits .gt_sourcenotes {
-  color: #333333;
-  background-color: #FFFFFF;
-  border-bottom-style: none;
-  border-bottom-width: 2px;
-  border-bottom-color: #D3D3D3;
-  border-left-style: none;
-  border-left-width: 2px;
-  border-left-color: #D3D3D3;
-  border-right-style: none;
-  border-right-width: 2px;
-  border-right-color: #D3D3D3;
-}
-
-#ktuotozits .gt_sourcenote {
-  font-size: 90%;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-#ktuotozits .gt_left {
-  text-align: left;
-}
-
-#ktuotozits .gt_center {
-  text-align: center;
-}
-
-#ktuotozits .gt_right {
-  text-align: right;
-  font-variant-numeric: tabular-nums;
-}
-
-#ktuotozits .gt_font_normal {
-  font-weight: normal;
-}
-
-#ktuotozits .gt_font_bold {
-  font-weight: bold;
-}
-
-#ktuotozits .gt_font_italic {
-  font-style: italic;
-}
-
-#ktuotozits .gt_super {
-  font-size: 65%;
-}
-
-#ktuotozits .gt_two_val_uncert {
-  display: inline-block;
-  line-height: 1em;
-  text-align: right;
-  font-size: 60%;
-  vertical-align: -0.25em;
-  margin-left: 0.1em;
-}
-
-#ktuotozits .gt_footnote_marks {
-  font-style: italic;
-  font-weight: normal;
-  font-size: 75%;
-  vertical-align: 0.4em;
-}
-
-#ktuotozits .gt_asterisk {
-  font-size: 100%;
-  vertical-align: 0;
-}
-
-#ktuotozits .gt_slash_mark {
-  font-size: 0.7em;
-  line-height: 0.7em;
-  vertical-align: 0.15em;
-}
-
-#ktuotozits .gt_fraction_numerator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: 0.45em;
-}
-
-#ktuotozits .gt_fraction_denominator {
-  font-size: 0.6em;
-  line-height: 0.6em;
-  vertical-align: -0.05em;
-}
-</style>
-<table class="gt_table">
-  &lt;caption&gt;Table 1. Linear regression&lt;/caption&gt;
-  
-  <thead class="gt_col_headings">
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1"> </th>
-      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2">
-        <span class="gt_column_spanner">Dependent variable: Fertility</span>
-      </th>
-    </tr>
-    <tr>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">M1</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">M2</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_left">(Intercept)</td>
-<td class="gt_row gt_center">84.080</td>
-<td class="gt_row gt_center">74.234</td></tr>
-    <tr><td class="gt_row gt_left"></td>
-<td class="gt_row gt_center">(5.782)</td>
-<td class="gt_row gt_center">(2.352)</td></tr>
-    <tr><td class="gt_row gt_left">Education</td>
-<td class="gt_row gt_center">-0.963</td>
-<td class="gt_row gt_center">-0.788</td></tr>
-    <tr><td class="gt_row gt_left"></td>
-<td class="gt_row gt_center">(0.189)</td>
-<td class="gt_row gt_center">(0.129)</td></tr>
-    <tr><td class="gt_row gt_left">Agriculture</td>
-<td class="gt_row gt_center">-0.066</td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left"></td>
-<td class="gt_row gt_center">(0.080)</td>
-<td class="gt_row gt_center"></td></tr>
-    <tr><td class="gt_row gt_left">Catholic</td>
-<td class="gt_row gt_center"></td>
-<td class="gt_row gt_center">0.111</td></tr>
-    <tr><td class="gt_row gt_left" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
-<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;"></td>
-<td class="gt_row gt_center" style="border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #000000;">(0.030)</td></tr>
-    <tr><td class="gt_row gt_left">Num.Obs.</td>
-<td class="gt_row gt_center">47</td>
-<td class="gt_row gt_center">47</td></tr>
-    <tr><td class="gt_row gt_left">R2</td>
-<td class="gt_row gt_center">0.449</td>
-<td class="gt_row gt_center">0.575</td></tr>
-    <tr><td class="gt_row gt_left">R2 Adj.</td>
-<td class="gt_row gt_center">0.424</td>
-<td class="gt_row gt_center">0.555</td></tr>
-    <tr><td class="gt_row gt_left">AIC</td>
-<td class="gt_row gt_center">349.7</td>
-<td class="gt_row gt_center">337.6</td></tr>
-    <tr><td class="gt_row gt_left">BIC</td>
-<td class="gt_row gt_center">357.1</td>
-<td class="gt_row gt_center">345.0</td></tr>
-    <tr><td class="gt_row gt_left">RMSE</td>
-<td class="gt_row gt_center">9.17</td>
-<td class="gt_row gt_center">8.06</td></tr>
-  </tbody>
-  <tfoot class="gt_sourcenotes">
-    <tr>
-      <td class="gt_sourcenote" colspan="3">Notes: some notes...</td>
-    </tr>
-  </tfoot>
-  
-</table>
-</div>
-
-]
-
+# Some more packages (Xaringan, Trackdown, Quarto)
 
 
 ---
-# Xaringans' Infinite Moon Reader
+# Xaringan (Xie 2021)
 
-* xaringan package (Xie 2021) includes R Studio add-in Infinite Moon Reader
+- R Studio add-in Infinite Moon Reader
 
-* preview live changes while editing your files or even manuscript
+- preview live changes while editing your files or even manuscript
 
-* avoids manually knitting your document each time
+- avoids manually knitting your document each time
 
 
 ```r
 xaringan::inf_mr()
 ```
 
-* launches a local web server via the servr package (Xie 2021) and displays your pages in the RStudio viewer
+- launches a local web server via the servr package (Xie 2021) and displays your pages in the RStudio viewer
 
-* each time you save your document (Ctrl/Cmd+S) xaringan updates your pages in the viewer.
+- each time you save your document (Ctrl/Cmd+S) xaringan updates your pages in the viewer.
 
 
 
@@ -902,18 +232,19 @@ xaringan::inf_mr()
 
 
 
-
 ---
-# R trackdown package for improving collaborative writing
+# Trackdown
+
+- R trackdown package for improving collaborative writing
 
 &lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: [ClaudioZandonella/trackdown
 ](https://github.com/ClaudioZandonella/trackdown)
 
-* collaborative workflow for the writing and editing process with R Markdown
-* upload local .Rmd (or .Rnw) file as a plain-text file to Google Drive
-* use Markdown (or LaTeX) syntax and Google Docs options (e.g. suggest edits, add comments)
-* review and integrate all contributions
-* the final document can be downloaded and rendered locally
+- collaborative workflow for the writing and editing process with R Markdown
+- upload local .Rmd (or .Rnw) file as a plain-text file to Google Drive
+- use Markdown (or LaTeX) syntax and Google Docs options (e.g. suggest edits, add comments)
+- review and integrate all contributions
+- the final document can be downloaded and rendered locally
 
 
 ---
@@ -932,10 +263,42 @@ upload_file(file = "trackdown_example.Rmd",
             hide_code = TRUE)
 ```
 
-* `download_file()`
-* `update_file()`
-* `render_file()`
+- `download_file()`
+- `update_file()`
+- `render_file()`
 
+---
+# Quarto
+
+- Quarto is often referred to as "the next generation of R Markdown"
+
+- main goal: seamlessly integrate narrative text and code, allowing for the generation of nicely formatted output documents
+
+- like R Markdown, Quarto utilizes Knitr to execute R code, which means that most existing Rmd files can be rendered in Quarto without requiring extensive modifications
+
+---
+# Rmd versus Quarto
+
+- Quarto comes with enhanced support for interactive and dynamic documents (versus static documents)
+
+- Quarto supports multiple programming languages (e.g. R, Python, Julia, and Observable JS) - by adding Lua filters to the pandoc metadata, it achieves a cross-language standardization of outputs
+
+- Template? OSF: https://osf.io/ur4xn
+
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: [/paulcbauer/Writing_a_reproducable_paper_with_quarto](https://github.com/paulcbauer/Writing_a_reproducable_paper_with_quarto)
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="osf-quarto.png" alt="Bauer, P.; Landesvatter, C. 2023" width="50%" /&gt;
+&lt;p class="caption"&gt;Bauer, P.; Landesvatter, C. 2023&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;!-- - best explained as a extension to rmd, which works as follows: .Rmd -&gt; knitr -&gt; md -&gt; pandoc -&gt; report/presentations/projects --&gt;
+&lt;!-- - quarto: .Qmd -&gt; knitr -&gt; md -&gt; pandoc with Lua filter (conversion layer now includes Lua filters) -&gt; report/presentations/projects --&gt;
+&lt;!-- - Lua Filters = including latex in pandoc metadata --&gt;
+&lt;!-- - conversion layer (pandoc) now includes Lua filters, this is beyond rad and knits, for example this allows using many other languages, Julia, python --&gt;
+&lt;!-- - allows going beyond R (because pre-processing of documents is done within Lua filters outside R run session), for example you could render your Jupyter notebook .ipynb which you created in a JupyterLab editor and not RStudio text editor (or in the case of RStudio even IDE) --&gt;
+&lt;!-- objective: standardizes reports and documents across languages, same yaml etc --&gt;
 
 ---
 class: center, middle
@@ -943,13 +306,10 @@ class: center, middle
 # Thank you!
 
 
-&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: clandesv/reproducible-manuscripts-with-RMD
+&lt;svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"&gt;&lt;/path&gt;&lt;/svg&gt;: clandesv/reproducible-manuscripts-with-r-markdown
 
-Xaringan Presentation on GitHub Pages: https://clandesv.github.io/reproducible-manuscripts-with-RMD/slides.html
+Xaringan Presentation on GitHub Pages: https://clandesv.github.io/reproducible-manuscripts-with-rmarkdown/slides.html
 
-R Markdown Template on OSF: https://osf.io/q395s
-
-R Markdown and Pagedown Template on OSF: https://osf.io/k8jhx/
 
 
 

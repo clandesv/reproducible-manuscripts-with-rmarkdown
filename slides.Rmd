@@ -1,46 +1,18 @@
 ---
-title: " Writing reproducible manuscripts in R Markdown and Pagedown"
-author:  
-  <table class="authors">
-    <tbody>
-      <tr>
-        <td>Camille Landesvatter</td>
-        <td>Dr. Paul C. Bauer</td>
-      </tr>
-      <tr>
-        <td>.font75[Mannheim Centre for European Research (MZES), University of Mannheim]</td>
-        <td>.font75[Mannheim Centre for European Research (MZES), University of Mannheim]</td>
-      </tr>
-    </tbody>
-  </table>
-  <table class="contact">
-    <tbody>
-      <tr>
-        <td>`r icons::fontawesome("envelope", style = "solid")` [`camille.landesvatter@uni-mannheim.de`](mailto:camille.landesvatter@uni-mannheim.de)</td>
-        <td>`r icons::fontawesome("envelope", style = "solid")` [`mail@paulcbauer.de`](mailto:mail@paulcbauer.de)</td>
-      </tr>
-      <tr>
-        <td>`r icons::fontawesome("globe", style = "solid")`  [`MZES Website`](https://www.mzes.uni-mannheim.de/d7/de/profiles/camille-marie-landesvatter)</td>
-        <td>`r icons::fontawesome("globe", style = "solid")`  [`MZES Website`](https://www.mzes.uni-mannheim.de/d7/de/profiles/paul-c-bauer)</td>
-      </tr>
-      <tr>
-        <td>`r icons::academicons("google-scholar")` [`Camille Landesvatter`](https://scholar.google.de/citations?user=S-lC2DgAAAAJ&hl=de)</td>
-        <td>`r icons::academicons("google-scholar")` [`Paul C. Bauer`](https://scholar.google.com/citations?hl=en&user=hw-b-MkAAAAJ)</td>
-      </tr>
-    </tbody>
-  </table>
-  
+title: "Writing reproducible manuscripts in R Markdown"
+author: Camille Landesvatter<br>.font90[Mannheim Centre for European Research (MZES), University of Mannheim]<br>`r icons::fontawesome("envelope", style = "solid")` [`camille.landesvatter@uni-mannheim.de`](mailto:camille.landesvatter@uni-mannheim.de)<br>`r icons::fontawesome("globe", style = "solid")`  [`MZES Website`](https://www.mzes.uni-mannheim.de/d7/de/profiles/camille-marie-landesvatter)<br>`r icons::academicons("google-scholar")` [`Camille Landesvatter`](https://scholar.google.de/citations?user=S-lC2DgAAAAJ&hl=de)<br><br>
+
 date: 
-  Mannheim Open Science Day Reprohack <br /> Oktober 11, 2022
+  Mannheim Open Science Office, Online Event<br /> June 21, 2023
   
 output: 
   xaringan::moon_reader:
     includes:
       after_body: insert-logo.html
     css:
-      - default
-      - jobtalk_ks_mtheme.css
-      - jobtalk_ks_fonts_mtheme.css
+      - default.css
+      - mtheme.css
+      - fonts_mtheme.css
     nature: 
       beforeInit: "macros.js"
       highlightStyle: github
@@ -91,99 +63,139 @@ BibOptions(
 )
 ```
 
+# What is a Reproducible Manuscript?
 
-# Why reproducible research?
+.pull-left[
+<blockquote><font size="5">A reproducible manuscript is a research document that includes all the necessary information and code to reproduce the reported findings and results.</font size></blockquote>
 
-* **Reproducibility**: Everyone (including yourself) can trace the steps that led to a particular result or statement. This increases transparency (and credibility).
+<blockquote><font size="5">It combines the traditional elements of a manuscript (text, figures, tables) with the computational code used for data analysis and visualizations.</font size></blockquote>
+]
 
-* **Access**: Open access is given when research is freely available to everyone without financial, legal, or technical barriers ([UNESCO 2022](https://en.unesco.org/open-access/what-open-access)), for example commercial software. E.g.,
-```{r, out.width = "30%", fig.align='center', echo=F}
-magick <- magick::image_read_pdf("workflow_access.pdf",
+
+.pull-right[
+- Reproducible Manuscripts versus "Traditional Workflows"?
+
+```{r, out.width = "100%", fig.align='center', echo=F, fig.cap="A 'traditional' workflow with 3 tabs open"}
+knitr::include_graphics("screenshot-workflow.png")
+```
+]
+---
+class: center, middle
+<font size="6">
+How do you currently incorporate your research findings into your paper manuscript?
+
+Let us know on Slido:<br>
+https://app.sli.do/event/m8n4VwLfmo1a9yHT6NViyH
+</font size>
+
+---
+
+# Why Reproducible Manuscripts?
+
+- .cyan[Trust and Credibility]: Reproducible manuscripts enhance the integrity of research, as it allows for thorough scrutiny of methods, data, and analyses. They allow others to independently verify and replicate the reported results.
+
+
+- .cyan[Efficiency]: Adopting reproducible workflows improves efficiency, as researchers can easily update and modify their work, easily spot errors and save time in the long run.
+
+
+* .cyan[Sharing and Collaboration]: By providing transparent and accessible documentation of methods, data, and code, reproducible manuscripts promote collaboration and allow others to build upon and replicate the research findings. This efficient sharing of knowledge fosters faster progress in scientific discovery and innovation.
+---
+
+# How to create Reproducible Manuscripts...
+
+- ... using R Markdown?
+
+```{r, out.width = "80%", fig.align='center', echo=F, fig.cap="Coding Language // Framework // R Markdown related packages"}
+magick <- magick::image_read_pdf("workflow.pdf",
                        pages=1)
 magick <- magick::image_trim(magick)
 magick
 ```
+---
+# R Markdown
 
-* **Errors**: Everyone (including yourself) can spot errors. Plus, automation (e.g., code that produces findings is tied to the document itself) avoids a slow and error-prone cut-and-paste approach.
+- R Markdown is a powerful tool that allows you to blend text, code, and output in a single document.
+- essential tool for reproducible research and creating dynamic reports, manuscripts, presentations and many more.
 
-* **Revisions**: Revision of manuscripts and other pieces of research gets easier when steps are reproducible and automated. Plus, easy version control with git, etc.
+**rmarkdown** package (Allaire et al. 2023)
 
-
-
+- the powerhouse behind R Markdown, providing the tools and functions to render your documents into different formats like HTML, PDF, Word, and more.
+- allows you to effortlessly switch between output formats, making it easy to share your work with collaborators, supervisors, or even publish it online.
+  - but also consider documenting your data analysis process with Rmd
+- using R Markdown eliminates the need for manual updates or copy-pasting code and results into different documents, saving you time and reducing the chances of errors.
 
 ---
-# Tools for reproducible manuscripts in R
+# R Markdown: Template (Bauer & Landesvatter 2023)
 
-.pull-left[
-* **rmarkdown**
-  * combines R code and markdown-formatted text to produce HTML, PDF or Word documents
-* **pagedown** *(Xie et al. 2022)*
-  * R Markdown based
-  * creates paginated HTML reports and prints to PDF
-  * this includes headers, footers, etc.
-  * highly customizable due to HTML and CSS styling sheets (YAML Metadata)
-  * many available templates, e.g. CV, thesis, letter, journal templates
+OSF: https://osf.io/q395s
 
-]
+`r icons::fontawesome("google-drive")`:
+[/2021_Writing_a_reproducable_paper_in_rmarkdown](https://drive.google.com/drive/folders/1zJP3cNPrHN-gj0rcmbHQgg-XA0hqDXdd)
 
-.pull-right[
-* Other (R Markdown based): posterdown, bookdown, xaringan, etc.
 
-```{r, out.width = "50%", fig.align='center', echo=F}
-knitr::include_graphics("R-libraries.jpeg")
-```
-
-<font size="2">Source: Indrajeet Patil on Twitter</font size>
-
-]
----
-# Two templates (on OSF, Gdrive and Github)
+`r icons::fontawesome("github")`: [/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown)
 
 .pull-left[
 
 <font size="4">
 
-Bauer, P. 2021: 
-```{r, out.width = "100%", fig.align='center', echo=F}
-knitr::include_graphics("osf-2.png")
+```{r, out.width = "100%", fig.align='center', fig.cap="Bauer, P.; Landesvatter, C. 2023", echo=F}
+knitr::include_graphics("osf-rmd.png")
 ```
 
 
-`r icons::fontawesome("github")`: [/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown)
+]
 
-`r icons::fontawesome("google-drive")`:
-[/2021_Writing_a_reproducable_paper_in_rmarkdown](https://drive.google.com/drive/folders/1zJP3cNPrHN-gj0rcmbHQgg-XA0hqDXdd)
+.pull-right[
+How can you use this templates?
+  * download all available files: 
+    * 'paper.rmd'
+    * 'references.bib'
+    * 'data.csv'
+    * 'american-sociological-association.csl'
+  * open .Rproj
+  * start creating your first manuscript in rmd, use our working paper (wp) style or modify the styling sheets
+]
 
-Bauer, P.; Landesvatter, C. 2022:
-```{r, out.width = "100%", fig.align='center', echo=F}
-knitr::include_graphics("osf-1.png")
-```
+
+---
+# Pagedown (Xie et al. 2022)
+
+* R Markdown based extension
+* create paginated HTML reports that are converted into PDF format
+* add headers, footers, page numbers, and more to your documents
+* by specifying YAML metadata, you can customize various aspects of your document's style, such as fonts, colors, margins, and page dimensions
+  * HTML and CSS styling sheets
+* pagedown offers a range of pre-built templates for different purposes, such as CVs, theses, letters, and journal articles, making it easy to get started
+* create professional-looking documents without the need for complex LaTeX formatting or advanced CSS knowledge
+* greate choice for generating polished reports or preparing documents that require a print-ready PDF format
+
+
+---
+# Pagedown: Template (Bauer & Landesvatter 2023)
+
+.pull-left[
+<font size="4">
+
+OSF: https://osf.io/k8jhx/
 
 `r icons::fontawesome("github")`: [/paulcbauer/Writing_a_reproducable_paper_in_pagedown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_pagedown)
 
 `r icons::fontawesome("google-drive")`: [/2021_Writing_a_reproducable_paper_in_pagedown](https://drive.google.com/drive/folders/1rWzj-Bu1EKqkSuE1gaFzduBJhzlThpkw)
 
-</font size>
+```{r, out.width = "100%", fig.align='center', fig.cap="Bauer, P.; Landesvatter, C. 2023", echo=F}
+knitr::include_graphics("osf-pagedown.png")
+```
 ]
+
+</font size>
 
 .pull-right[
-How can you use these templates?
-  * download or clone all available files: 
-    * 'paper.rmd'
-    * 'references.bib'
-    * 'data.csv'
-    * 'american-sociological-association.csl'
-    * styling files for pagedown: 'wp_paged.html', 'wp.css', 'wp-fonts.css', 'wp-pages.css'
-  * open .Rproj
-  * start creating your first manuscript in rmd, use our working paper (wp) style or modify the styling sheets
-]
-
----
-# Pagedown: Working Paper (wp) Style
-
-```{r, out.width = "50%", fig.align='center', echo=F}
+```{r, out.width = "100%", fig.align='center', echo=F}
 knitr::include_graphics("pagedown-wp-style.png")
 ```
+]
+
 
 ---
 # Pre-Requisites for R Markdown and Pagedown
@@ -209,236 +221,39 @@ tinytex::install_tinytex()
 remotes::install_github('rstudio/pagedown')
 ```
 
+
 ---
 class: center, middle
 
-# Three Examples
-## 1. Inline code & results 
-## 2. Figures
-## 3. Tables
+# Structure of a Reproducible Manuscript (.Rmd)
 
----
-# 1. Inline code & results
-
-<u>Example 1:</u>
-
-Writing <code>&grave;r `3 + 7`&grave;</code> (use back ticks!) will calculate and insert `r 3 + 7` into your text.   
-
-<u>Example 2:</u>
-
-Imagine you want to automate the display of regression coefficients within your manuscript.
-
-```{r import-data, eval=T, echo=T}
-data <- read.csv("data.csv")
-```
-
-```{r estimate-regression, eval=T, echo=T}
-M1 <- lm(Fertility ~ Education + Agriculture, data = data)
-```
-
-Now we can write some plain text with inline code:
-The coefficient of `Education` of the model we ran above is `r round(coef(M1)[2], 2)`.
-`r round(coef(M1)[2], 2)` was printed by writing: <code>&grave;r `round(coef(M1)[2], 2)`&grave;</code> (use back ticks!).
-
-*What advantages does such a workflow bring?*
----
-# 2. Figures
-
-Example: You want to create, edit and insert a ggplot2 graph alongside its code and the text.
-
-<font size="4">
-
-```{r eval=T, echo=T}
-data$Education_cat <- cut(data$Education, 
-                   breaks=c(-Inf, 6, 12, Inf), labels=c("low","middle","high"))
-```
-
-````
-`r ''````{r fig-1, fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center",
-fig.width=6, fig.height=3, eval=T, echo=T}
-ggplot(data, aes(x=Catholic, y=Fertility, shape=Education_cat)) + geom_point() +
-  labs(x="Agriculture", y = "Fertility", shape="Education") + theme_classic()
-```
-````
-</font size>
-
-<style>
-p.caption {
-  font-size: 0.6em;
-}
-</style>
-
-```{r fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center", fig.width=5, fig.height=3, eval=T, echo=F}
-ggplot(data, aes(x=Catholic, y=Fertility, shape=Education_cat)) + geom_point() +
-  labs(x="Agriculture", y = "Fertility", shape="Education") + theme_classic()
-```
-
-
----
-# 2. Figures
-
-* For cross-referencing within your manuscript you can refer to Figure 1 by using `\@ref(fig:fig-1)`.
-
-* But pay attention to your code chunk options. In the previous example:
-
-<blockquote> <font size="6">{r fig-1, fig.cap="Fig 1. Fertility and Agriculture by Education", fig.align="center", fig.width=6, fig.height=3, eval=T, echo=T} </font size></blockquote> 
-
-*What do the different code chunk options mean?*
-
-
-
+Demonstration in R Studio<br>
+`r icons::fontawesome("github")`: [/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown](https://github.com/paulcbauer/Writing_a_reproducable_paper_in_rmarkdown)
 
 
 
 ---
-# 3. Tables
+class: center, middle
 
-Example 1: You want to show summary statistics of your data.
-
-.pull-left[
-```{r eval=F, echo=T, results="asis"}
-library(stargazer)
-stargazer(data, 
-          title = "Summary table with stargazer",
-          label="tab1", 
-          header=FALSE,
-          table.placement = "H", 
-          type="html",
-          font.size = "small")
-```
-]
-
-.pull-right[
-```{r eval=T, echo=F, results="asis"}
-library(stargazer)
-stargazer(data, 
-          title = "Summary table with stargazer",
-          label="tab1", 
-          header=FALSE,
-          table.placement = "H", 
-          type="html",
-          font.size = "small")
-```
-] 
- 
- 
----
-# 3. Tables
-
-Example 1b: You want to show summary statistics of a subset of your data.
-
-.pull-left[
-```{r eval=F, echo=T, results="asis"}
-library(stargazer)
-stargazer(data %>% filter(Education>=15),
-          title = "Summary table with stargazer",
-          label="tab1", 
-          header=FALSE,
-          table.placement = "H", 
-          type="html",
-          font.size = "small")
-```
-]
-
-.pull-right[
-```{r eval=T, echo=F, results="asis"}
-library(stargazer)
-stargazer(data %>% filter(Education>=15),
-          title = "Summary table with stargazer",
-          label="tab1", 
-          header=FALSE,
-          table.placement = "H", 
-          type="html",
-          font.size = "small")
-```
-] 
-
----
-# 3. Tables
-
-<font size="3">
-
-.pull-left[
-````
-`r ''````{r table-1, eval=T, echo=T, results='hide'}
-M1 <- lm(Fertility ~ Education + Agriculture, data = data)
-M2 <- lm(Fertility ~ Education + Catholic, data = data)
-models <- list("M1" = M1, "M2" =  M2)
-
-library(gt)
-library(modelsummary)
-
-modelsummary(models,
-             title = 'Table 1. Linear regression',
-             output = 'gt',
-             notes = "Notes: some notes...") %>%
-  tab_spanner(label = 'Dependent variable: Fertility', columns = 2:3) %>%
-  tab_options(
-    table.font.size = 16, data_row.padding = px(1),
-    table.border.top.color = "white", heading.border.bottom.color = "black",
-    row_group.border.top.color = "black",
-    row_group.border.bottom.color = "white", table.border.bottom.color = "white",
-    column_labels.border.top.color = "black", column_labels.border.bottom.color = "black",
-    table_body.hlines.color = "white"
-  )
-```
-````
-
-<font size="4">
-
-* For cross-referencing within your manuscript you can refer to Table 1 by using `\@ref(tab:table-1)` (use table-1 as the chunk name!).
-
-</font size>
-]
-
-
-</font size>
-
-.pull-right[
-```{r table-1, eval=T, echo=F}
-M1 <- lm(Fertility ~ Education + Agriculture, data = data)
-M2 <- lm(Fertility ~ Education + Catholic, data = data)
-models <- list("M1" = M1, "M2" =  M2)
-
-library(gt)
-library(modelsummary)
-
-modelsummary(models,
-             title = 'Table 1. Linear regression',
-             output = 'gt',
-             notes = "Notes: some notes...") %>%
-  tab_spanner(label = 'Dependent variable: Fertility', columns = 2:3) %>%
-  tab_options(
-    table.font.size = 16, data_row.padding = px(1), table.border.top.color = "white",
-    heading.border.bottom.color = "black",
-    row_group.border.top.color = "black", row_group.border.bottom.color = "white",
-    table.border.bottom.color = "white",
-    column_labels.border.top.color = "black", column_labels.border.bottom.color = "black", table_body.hlines.color = "white"
-  )
-
-
-```
-
-]
-
+# Some more packages (Xaringan, Trackdown, Quarto)
 
 
 ---
-# Xaringans' Infinite Moon Reader
+# Xaringan (Xie 2021)
 
-* xaringan package (Xie 2021) includes R Studio add-in Infinite Moon Reader
+- R Studio add-in Infinite Moon Reader
 
-* preview live changes while editing your files or even manuscript
+- preview live changes while editing your files or even manuscript
 
-* avoids manually knitting your document each time
+- avoids manually knitting your document each time
 
 ```{r xaringan-inf-mr, eval=F, echo=T}
 xaringan::inf_mr()
 ```
 
-* launches a local web server via the servr package (Xie 2021) and displays your pages in the RStudio viewer
+- launches a local web server via the servr package (Xie 2021) and displays your pages in the RStudio viewer
 
-* each time you save your document (Ctrl/Cmd+S) xaringan updates your pages in the viewer.
+- each time you save your document (Ctrl/Cmd+S) xaringan updates your pages in the viewer.
 
 
 
@@ -452,18 +267,19 @@ knitr::include_graphics("xaringan-inf-moonreader.png")
 
 
 
-
 ---
-# R trackdown package for improving collaborative writing
+# Trackdown
+
+- R trackdown package for improving collaborative writing
 
 `r icons::fontawesome("github")`: [ClaudioZandonella/trackdown
 ](https://github.com/ClaudioZandonella/trackdown)
 
-* collaborative workflow for the writing and editing process with R Markdown
-* upload local .Rmd (or .Rnw) file as a plain-text file to Google Drive
-* use Markdown (or LaTeX) syntax and Google Docs options (e.g. suggest edits, add comments)
-* review and integrate all contributions
-* the final document can be downloaded and rendered locally
+- collaborative workflow for the writing and editing process with R Markdown
+- upload local .Rmd (or .Rnw) file as a plain-text file to Google Drive
+- use Markdown (or LaTeX) syntax and Google Docs options (e.g. suggest edits, add comments)
+- review and integrate all contributions
+- the final document can be downloaded and rendered locally
 
 
 ---
@@ -480,10 +296,41 @@ upload_file(file = "trackdown_example.Rmd",
             hide_code = TRUE)
 ```
 
-* `download_file()`
-* `update_file()`
-* `render_file()`
+- `download_file()`
+- `update_file()`
+- `render_file()`
 
+---
+# Quarto
+
+- Quarto is often referred to as "the next generation of R Markdown"
+
+- main goal: seamlessly integrate narrative text and code, allowing for the generation of nicely formatted output documents
+
+- like R Markdown, Quarto utilizes Knitr to execute R code, which means that most existing Rmd files can be rendered in Quarto without requiring extensive modifications
+
+---
+# Rmd versus Quarto
+
+- Quarto comes with enhanced support for interactive and dynamic documents (versus static documents)
+
+- Quarto supports multiple programming languages (e.g. R, Python, Julia, and Observable JS) - by adding Lua filters to the pandoc metadata, it achieves a cross-language standardization of outputs
+
+- Template? OSF: https://osf.io/ur4xn
+
+`r icons::fontawesome("github")`: [/paulcbauer/Writing_a_reproducable_paper_with_quarto](https://github.com/paulcbauer/Writing_a_reproducable_paper_with_quarto)
+
+```{r, out.width = "50%", fig.align='center', fig.cap="Bauer, P.; Landesvatter, C. 2023", echo=F}
+knitr::include_graphics("osf-quarto.png")
+```
+
+
+<!-- - best explained as a extension to rmd, which works as follows: .Rmd -> knitr -> md -> pandoc -> report/presentations/projects -->
+<!-- - quarto: .Qmd -> knitr -> md -> pandoc with Lua filter (conversion layer now includes Lua filters) -> report/presentations/projects -->
+<!-- - Lua Filters = including latex in pandoc metadata -->
+<!-- - conversion layer (pandoc) now includes Lua filters, this is beyond rad and knits, for example this allows using many other languages, Julia, python -->
+<!-- - allows going beyond R (because pre-processing of documents is done within Lua filters outside R run session), for example you could render your Jupyter notebook .ipynb which you created in a JupyterLab editor and not RStudio text editor (or in the case of RStudio even IDE) -->
+<!-- objective: standardizes reports and documents across languages, same yaml etc -->
 
 ---
 class: center, middle
@@ -491,13 +338,10 @@ class: center, middle
 # Thank you!
 
 
-`r icons::fontawesome("github")`: clandesv/reproducible-manuscripts-with-RMD
+`r icons::fontawesome("github")`: clandesv/reproducible-manuscripts-with-r-markdown
 
-Xaringan Presentation on GitHub Pages: https://clandesv.github.io/reproducible-manuscripts-with-RMD/slides.html
+Xaringan Presentation on GitHub Pages: https://clandesv.github.io/reproducible-manuscripts-with-rmarkdown/slides.html
 
-R Markdown Template on OSF: https://osf.io/q395s
-
-R Markdown and Pagedown Template on OSF: https://osf.io/k8jhx/
 
 
 
