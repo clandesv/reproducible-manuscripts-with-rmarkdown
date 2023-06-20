@@ -112,6 +112,31 @@ magick <- magick::image_trim(magick)
 magick
 ```
 ---
+
+# How to create Reproducible Manuscripts...
+
+Repositories on GitHub:
+
+<font size = "4">
+- https://github.com/rstudio/rmarkdown
+
+- https://github.com/rstudio/bookdown
+
+- https://github.com/rstudio/pagedown
+
+- https://github.com/rstudio/blogdown
+
+- https://github.com/yihui/xaringan
+
+- https://github.com/rstudio/rticles
+
+- https://github.com/cjvanlissa/worcs
+
+- https://github.com/ClaudioZandonella/trackdown
+
+</font size>
+
+---
 # R Markdown
 
 - R Markdown is a powerful tool that allows you to blend text, code, and output in a single document.
@@ -241,6 +266,8 @@ class: center, middle
 ---
 # Xaringan (Xie 2021)
 
+- R Markdown extension that enables the creation of stylish and interactive slideshows using HTML and CSS
+
 - R Studio add-in Infinite Moon Reader
 
 - preview live changes while editing your files or even manuscript
@@ -253,7 +280,7 @@ xaringan::inf_mr()
 
 - launches a local web server via the servr package (Xie 2021) and displays your pages in the RStudio viewer
 
-- each time you save your document (Ctrl/Cmd+S) xaringan updates your pages in the viewer.
+- each time you save your document (Ctrl/Cmd+S) xaringan updates your pages in the viewer
 
 
 
