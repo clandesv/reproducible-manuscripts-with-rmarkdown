@@ -75,8 +75,8 @@ BibOptions(
 .pull-right[
 - Reproducible Manuscripts versus "Traditional Workflows"?
 
-```{r, out.width = "100%", fig.align='center', echo=F, fig.cap="A 'traditional' workflow with 3 tabs open"}
-knitr::include_graphics("screenshot-workflow.png")
+```{r, out.width = "100%", fig.align='center', echo=F, fig.cap="A 'traditional' workflow with 3 open tabs"}
+knitr::include_graphics("./figures/screenshot-workflow.png")
 ```
 ]
 ---
@@ -106,7 +106,7 @@ https://app.sli.do/event/m8n4VwLfmo1a9yHT6NViyH
 - ... using R Markdown?
 
 ```{r, out.width = "80%", fig.align='center', echo=F, fig.cap="Coding Language // Framework // R Markdown related packages"}
-magick <- magick::image_read_pdf("workflow.pdf",
+magick <- magick::image_read_pdf("./figures/workflow.pdf",
                        pages=1)
 magick <- magick::image_trim(magick)
 magick
@@ -140,7 +140,7 @@ OSF: https://osf.io/q395s
 <font size="4">
 
 ```{r, out.width = "100%", fig.align='center', fig.cap="Bauer, P.; Landesvatter, C. 2023", echo=F}
-knitr::include_graphics("osf-rmd.png")
+knitr::include_graphics("./figures/osf-rmd.png")
 ```
 
 
@@ -184,7 +184,7 @@ OSF: https://osf.io/k8jhx/
 `r icons::fontawesome("google-drive")`: [/2021_Writing_a_reproducable_paper_in_pagedown](https://drive.google.com/drive/folders/1rWzj-Bu1EKqkSuE1gaFzduBJhzlThpkw)
 
 ```{r, out.width = "100%", fig.align='center', fig.cap="Bauer, P.; Landesvatter, C. 2023", echo=F}
-knitr::include_graphics("osf-pagedown.png")
+knitr::include_graphics("./figures/osf-pagedown.png")
 ```
 ]
 
@@ -192,7 +192,7 @@ knitr::include_graphics("osf-pagedown.png")
 
 .pull-right[
 ```{r, out.width = "100%", fig.align='center', echo=F}
-knitr::include_graphics("pagedown-wp-style.png")
+knitr::include_graphics("./figures/pagedown-wp-style.png")
 ```
 ]
 
@@ -262,7 +262,7 @@ xaringan::inf_mr()
 # Xaringans' Infinite Moon Reader
 
 ```{r, out.width = "100%", fig.align='center', echo=F}
-knitr::include_graphics("xaringan-inf-moonreader.png")
+knitr::include_graphics("./figures/xaringan-inf-moonreader.png")
 ```
 
 
@@ -321,7 +321,7 @@ upload_file(file = "trackdown_example.Rmd",
 `r icons::fontawesome("github")`: [/paulcbauer/Writing_a_reproducable_paper_with_quarto](https://github.com/paulcbauer/Writing_a_reproducable_paper_with_quarto)
 
 ```{r, out.width = "50%", fig.align='center', fig.cap="Bauer, P.; Landesvatter, C. 2023", echo=F}
-knitr::include_graphics("osf-quarto.png")
+knitr::include_graphics("./figures/osf-quarto.png")
 ```
 
 
