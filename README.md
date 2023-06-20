@@ -2,6 +2,10 @@ Explore this repository for introductory slides on writing reproducible manuscri
 
 Access the slideshow at: Reproducible Manuscripts with R Markdown Slides. https://clandesv.github.io/reproducible-manuscripts-with-rmarkdown/slides.html
 
+
+---
+
+## License
 Shield: [![CC BY 4.0][cc-by-shield]][cc-by]
 
 This work is licensed under a
